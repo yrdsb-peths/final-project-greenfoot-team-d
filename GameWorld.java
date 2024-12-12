@@ -10,7 +10,7 @@ public class GameWorld extends World {
     /*
      * Constructor 
      */
-    public GameWorld(Button musicButton) {
+    public GameWorld() {
         super(600, 400, 1);
         // setBackground("images/??.png");
 
@@ -18,6 +18,19 @@ public class GameWorld extends World {
         // this.musicButton = musicButton;
         // addObject(musicButton, 950, 555);
 
+        createSnake();
+    }
+
+    public void createSnake() {
+        Snake snake = new Snake();
+        addObject(snake, getWidth()/2, getHeight()/2);
+    }
+
+    public void act(){
+        // String key = Greenfoot.getKey();
+        // if(key != null) {
+
+        // }
     }
 
     //  /*
