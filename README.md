@@ -1,5 +1,15 @@
 ## Group D - Yan, Kholly, Tiffany, Gloriana
 
+# Game: Snake game
+Levels:
+- Speed
+- grid size
+- obstacle
+- reverse movement
+- debuffs
+
+
+
 # Set up Greenfoot for VSCode
 
 [Mac]
