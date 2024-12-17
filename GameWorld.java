@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import greenfoot.*;
 
 public class GameWorld extends World {
@@ -6,6 +8,8 @@ public class GameWorld extends World {
     // private static int highScore = 0;
 
     // private Button musicButton;
+
+    List<int[]> snake = new ArrayList<>();
 
     /*
      * Constructor 
@@ -22,8 +26,12 @@ public class GameWorld extends World {
     }
 
     public void createSnake() {
-        Snake snake = new Snake();
+        Snake snake = new Snake("head");
         addObject(snake, getWidth()/2, getHeight()/2);
+    }
+
+    public void growSnake() {
+        
     }
 
     public void act(){
