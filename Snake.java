@@ -1,15 +1,11 @@
 import java.util.LinkedList;
-
 import greenfoot.*;
 
 public class Snake extends Actor {
     private int dx = 10; // Movement in x-direction
     private int dy = 0;  // Movement in y-direction
-
-    GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-    GreenfootImage yellowBody = new GreenfootImage("images/png/snake_yellow_blob_32.png");
     
-    //private LinkedList<Body> body = new LinkedList<>();
+    private LinkedList<SnakeBody> body = new LinkedList<>();
     private int moveDelay = 5; // Speed control
     private int moveCounter = 0;
 
@@ -17,6 +13,7 @@ public class Snake extends Actor {
      * Constructor
      */
     public Snake(String part) {
+        GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
         setImage(yellowHead);
     }
 
@@ -54,24 +51,33 @@ public class Snake extends Actor {
         int previousX = getX();
         int previousY = getY();
 
+        // Move the snake head
         setLocation(previousX+dx, previousY+dy);
+
+        // Move the body
+        for(SnakeBody b: body) {
+            int tempX = b.getX();
+            int tempY = b.getY();
+
+            b.setLocation(previousX, previousY);
+            previousX = tempX;
+            previousY = tempY;
+        }
+
     }
 
 
-    // public void grow() {
-    //     int[] tail = arr.get(arr.size() - 1);
-    //     arr.add(new int[]{tail[0], tail[1]});
-    // }
+    public void grow() {
+        SnakeBody b = new SnakeBody();
+        getWorld().addObject(b,getX(),getY());
+        body.add(b);
+    }
 
-    // public void checkFoodCollision() {
+    // public void checkCollision() {
     //     Actor actor = getOneIntersectingObject(Food.class); // Might be null
     //     if (actor != null) {
-    //         Food food = (Food) actor;
-    //         MyWorld world = (MyWorld) getWorld();
-
-    //         world.increaseScore(food.value);
+    //         grow();
     //         getWorld().removeObject(food);
-    //         world.spawnFood();
     //     }
     // }
 }
