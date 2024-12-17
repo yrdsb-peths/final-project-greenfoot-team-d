@@ -30,7 +30,7 @@ public class GameWorld extends World {
      * Create the snake 
      */
     public void createSnake() {
-        snakeHead = new Snake();
+        snakeHead = new SnakeHead();
         addObject(snakeHead, getWidth()/2, getHeight()/2);
     }
 
