@@ -10,6 +10,11 @@ public class GameWorld extends World {
     // private Button musicButton;
 
     List<int[]> snake = new ArrayList<>();
+    Snake snakeHead;
+
+    int level = 0;
+    int foodEaten = 0;
+    int speedCounter = 5;
 
     /*
      * Constructor 
@@ -25,20 +30,25 @@ public class GameWorld extends World {
         createSnake();
     }
 
+    /*
+     * Create the snake 
+     */
     public void createSnake() {
-        Snake snake = new Snake("head");
-        addObject(snake, getWidth()/2, getHeight()/2);
-    }
-
-    public void growSnake() {
-        
+        snakeHead = new Snake();
+        addObject(snakeHead, getWidth()/2, getHeight()/2);
     }
 
     public void act(){
-        // String key = Greenfoot.getKey();
-        // if(key != null) {
+     
+        // Check number of food eaten 
+        if(snakeHead.getFoodEaten()%5 == 0) {
+            level++;
+        }
 
-        // }
+        // Speed up every 2 levels
+        if(level%2 == 0) {
+            snakeHead.setSpeed(++speedCounter);
+        }
     }
 
     //  /*
