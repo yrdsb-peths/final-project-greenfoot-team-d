@@ -9,6 +9,7 @@ public class Snake extends Actor {
     private int moveDelay = 5; // Speed control
     private int moveCounter = 0;
     private int foodEaten = 0;
+    private int level = 1;
 
     /*
      * Constructor
@@ -86,8 +87,18 @@ public class Snake extends Actor {
     //     Actor actor = getOneIntersectingObject(Food.class); // Might be null
     //     if (actor != null) {
     //         grow();
-    //         foodEaten++;
     //         getWorld().removeObject(food);
+
+    //         foodEaten++;
+            //    if(foodEaten%5 == 0) {
+            //         level++; 
+
+            //         // Speed up every 2 levels
+            //         if(level % 2 == 0) {
+            //             setSpeed(moveDelay--);
+            //         }
+            //    }
+
     //     }
     // }
 }

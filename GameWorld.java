@@ -12,10 +12,6 @@ public class GameWorld extends World {
     List<int[]> snake = new ArrayList<>();
     Snake snakeHead;
 
-    int level = 0;
-    int foodEaten = 0;
-    int speedCounter = 5;
-
     /*
      * Constructor 
      */
@@ -40,15 +36,8 @@ public class GameWorld extends World {
 
     public void act(){
      
-        // Check number of food eaten 
-        if(snakeHead.getFoodEaten()%5 == 0) {
-            level++;
-        }
 
-        // Speed up every 2 levels
-        if(level%2 == 0) {
-            snakeHead.setSpeed(++speedCounter);
-        }
+        
     }
 
     //  /*
