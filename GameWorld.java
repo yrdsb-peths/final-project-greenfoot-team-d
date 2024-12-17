@@ -17,7 +17,7 @@ public class GameWorld extends World {
      */
     public GameWorld() {
         super(600, 400, 1);
-        // setBackground("images/??.png");
+        setBackground("images/green background.png");
 
         // // Add music button 
         // this.musicButton = musicButton;
