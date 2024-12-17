@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import greenfoot.*;
 
 public class GameWorld extends World {
@@ -7,10 +9,12 @@ public class GameWorld extends World {
 
     // private Button musicButton;
 
+    List<int[]> snake = new ArrayList<>();
+
     /*
      * Constructor 
      */
-    public GameWorld(Button musicButton) {
+    public GameWorld() {
         super(600, 400, 1);
         // setBackground("images/??.png");
 
@@ -18,6 +22,23 @@ public class GameWorld extends World {
         // this.musicButton = musicButton;
         // addObject(musicButton, 950, 555);
 
+        createSnake();
+    }
+
+    public void createSnake() {
+        Snake snake = new Snake("head");
+        addObject(snake, getWidth()/2, getHeight()/2);
+    }
+
+    public void growSnake() {
+        
+    }
+
+    public void act(){
+        // String key = Greenfoot.getKey();
+        // if(key != null) {
+
+        // }
     }
 
     //  /*
