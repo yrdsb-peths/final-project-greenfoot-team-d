@@ -8,11 +8,13 @@ public class Snake extends Actor {
     private LinkedList<SnakeBody> body = new LinkedList<>();
     private int moveDelay = 5; // Speed control
     private int moveCounter = 0;
+    private int foodEaten = 0;
+    private int level = 1;
 
     /*
      * Constructor
      */
-    public Snake(String part) {
+    public Snake() {
         GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
         setImage(yellowHead);
     }
@@ -66,18 +68,37 @@ public class Snake extends Actor {
 
     }
 
-
-    public void grow() {
+    private void grow() {
         SnakeBody b = new SnakeBody();
         getWorld().addObject(b,getX(),getY());
         body.add(b);
     }
+
+    public void setSpeed(int speed) {
+        moveDelay = speed;
+    }
+
+    public int getFoodEaten() {
+        return foodEaten;
+    }
+    	
 
     // public void checkCollision() {
     //     Actor actor = getOneIntersectingObject(Food.class); // Might be null
     //     if (actor != null) {
     //         grow();
     //         getWorld().removeObject(food);
+
+    //         foodEaten++;
+            //    if(foodEaten%5 == 0) {
+            //         level++; 
+
+            //         // Speed up every 2 levels
+            //         if(level % 2 == 0) {
+            //             setSpeed(moveDelay--);
+            //         }
+            //    }
+
     //     }
     // }
 }

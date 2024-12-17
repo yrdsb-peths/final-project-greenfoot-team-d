@@ -10,13 +10,14 @@ public class GameWorld extends World {
     // private Button musicButton;
 
     List<int[]> snake = new ArrayList<>();
+    Snake snakeHead;
 
     /*
      * Constructor 
      */
     public GameWorld() {
         super(600, 400, 1);
-        // setBackground("images/??.png");
+        setBackground("images/green background.png");
 
         // // Add music button 
         // this.musicButton = musicButton;
@@ -25,20 +26,18 @@ public class GameWorld extends World {
         createSnake();
     }
 
+    /*
+     * Create the snake 
+     */
     public void createSnake() {
-        Snake snake = new Snake("head");
-        addObject(snake, getWidth()/2, getHeight()/2);
-    }
-
-    public void growSnake() {
-        
+        snakeHead = new Snake();
+        addObject(snakeHead, getWidth()/2, getHeight()/2);
     }
 
     public void act(){
-        // String key = Greenfoot.getKey();
-        // if(key != null) {
+     
 
-        // }
+        
     }
 
     //  /*
