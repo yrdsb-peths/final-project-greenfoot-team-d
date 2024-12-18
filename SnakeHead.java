@@ -9,7 +9,7 @@ public class SnakeHead extends Snake {
     private int moveDelay = 5; // Speed control
     private int moveCounter = 0;
     private int foodEaten = 0;
-    private int level = 1;
+    private static int level = 1;
 
     /*
      * Constructor
@@ -30,7 +30,7 @@ public class SnakeHead extends Snake {
         }
 
         checkKeyInput();
-        //checkCollision();
+        checkCollision();
 
     }
 
@@ -86,24 +86,32 @@ public class SnakeHead extends Snake {
     public int getFoodEaten() {
         return foodEaten;
     }
+
+    public static int getLevel() {
+        return level;
+    }
     	
 
-    // public void checkCollision() {
-    //     Actor actor = getOneIntersectingObject(Food.class); // Might be null
-    //     if (actor != null) {
-    //         grow();
-    //         getWorld().removeObject(food);
+    public void checkCollision() {
+        Actor actor = getOneIntersectingObject(Food.class); // Might be null
+        if (actor != null) {
+            Food food = (Food) actor;
+            GameWorld world = (GameWorld) getWorld();
+            
+            grow();
+            world.removeObject(food);
+            world.spawnFood();
 
-    //         foodEaten++;
-            //    if(foodEaten%5 == 0) {
-            //         level++; 
+            foodEaten++;
+            if(foodEaten%5 == 0) {
+                level++; 
 
-            //         // Speed up every 2 levels
-            //         if(level % 2 == 0) {
-            //             setSpeed(moveDelay--);
-            //         }
-            //    }
+                // Speed up every 2 levels
+                if(level % 2 == 0) {
+                    setSpeed(moveDelay--);
+                }
+            }
 
-    //     }
-    // }
+        }
+    }
 }

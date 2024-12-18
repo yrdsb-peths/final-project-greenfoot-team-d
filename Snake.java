@@ -1,5 +1,5 @@
 import greenfoot.*;
 
-public abstract class Snake extends Actor {
+public class Snake extends Actor {
     
 }
