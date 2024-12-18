@@ -24,20 +24,33 @@ public class GameWorld extends World {
         // addObject(musicButton, 950, 555);
 
         createSnake();
+        spawnFood();
+    }
+
+    public void act(){
+        setPaintOrder(SnakeHead.class, SnakeBody.class);
     }
 
     /*
      * Create the snake 
      */
     public void createSnake() {
-        snakeHead = new Snake();
+        snakeHead = new SnakeHead();
         addObject(snakeHead, getWidth()/2, getHeight()/2);
     }
 
-    public void act(){
-     
+    public void createObstacle() {
+        Obstacle obstacle = new Obstacle();
+        int x = Greenfoot.getRandomNumber(600);
+        int y = Greenfoot.getRandomNumber(400);
+        addObject(obstacle, x, y);
+    }
 
-        
+    public void spawnFood() {
+        Food food = new Apple();
+        int x = Greenfoot.getRandomNumber(600);
+        int y = Greenfoot.getRandomNumber(400);
+        addObject(food, x, y);
     }
 
     //  /*
