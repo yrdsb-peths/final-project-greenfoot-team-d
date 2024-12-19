@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import greenfoot.*;
+import java.util.Random;
 
 public class GameWorld extends World {
     
@@ -11,6 +12,7 @@ public class GameWorld extends World {
 
     List<int[]> snake = new ArrayList<>();
     Snake snakeHead;
+    Random random = new Random();
 
     /*
      * Constructor 
@@ -28,7 +30,7 @@ public class GameWorld extends World {
     }
 
     public void act(){
-        setPaintOrder(SnakeHead.class, SnakeBody.class);
+        setPaintOrder(Food.class, Obstacle.class, SnakeHead.class, SnakeBody.class);
     }
 
     /*
@@ -41,16 +43,18 @@ public class GameWorld extends World {
 
     public void createObstacle() {
         Obstacle obstacle = new Obstacle();
-        int x = Greenfoot.getRandomNumber(600);
-        int y = Greenfoot.getRandomNumber(400);
+        int x = random.nextInt(15,585);
+        int y = random.nextInt(15,385);
         addObject(obstacle, x, y);
+        obstacle.checkPosition();
     }
 
     public void spawnFood() {
         Food food = new Apple();
-        int x = Greenfoot.getRandomNumber(600);
-        int y = Greenfoot.getRandomNumber(400);
+        int x = random.nextInt(15,585);
+        int y = random.nextInt(15,385);
         addObject(food, x, y);
+        food.checkPosition();
     }
 
     //  /*
