@@ -22,6 +22,7 @@ public class Obstacle extends Actor{
     public void checkPosition() {
         Actor food = getOneIntersectingObject(Food.class); // Might be null
         Actor obstacle = getOneIntersectingObject(Obstacle.class);
+        Actor snake = getOneIntersectingObject(Snake.class);
         GameWorld world = (GameWorld) getWorld();
         if (food != null) {    
            
@@ -30,7 +31,7 @@ public class Obstacle extends Actor{
                    
         }
 
-        if(obstacle != null) {
+        if(obstacle != null || snake != null) {
             world.createObstacle();
             world.removeObject(obstacle);   
         }
