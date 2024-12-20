@@ -33,7 +33,7 @@ public class Obstacle extends Actor{
 
         if(obstacle != null || snake != null) {
             world.createObstacle();
-            world.removeObject(obstacle);   
+            world.removeObject(this);   
         }
     }
 }
