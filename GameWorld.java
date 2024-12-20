@@ -13,6 +13,8 @@ public class GameWorld extends World {
     List<int[]> snake = new ArrayList<>();
     Snake snakeHead;
     Random random = new Random();
+    Label levelLabel; 
+    int level = SnakeHead.getLevel();; 
 
     /*
      * Constructor 
@@ -27,10 +29,14 @@ public class GameWorld extends World {
 
         createSnake();
         spawnFood();
+        levelLabel = new Label("Level " + level, 32);
+        addObject(levelLabel, 50, 20);
     }
 
     public void act(){
         setPaintOrder(Food.class, Obstacle.class, SnakeHead.class, SnakeBody.class);
+        level = SnakeHead.getLevel();
+        levelLabel.setValue("Level " + level);
     }
 
     /*
