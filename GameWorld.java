@@ -43,8 +43,8 @@ public class GameWorld extends World {
 
     public void createObstacle() {
         Obstacle obstacle = new Obstacle();
-        int x = random.nextInt(15,585);
-        int y = random.nextInt(15,385);
+        int x = random.nextInt(30,570);
+        int y = random.nextInt(30,370);
         addObject(obstacle, x, y);
         obstacle.checkPosition();
     }

@@ -10,6 +10,7 @@ public class SnakeHead extends Snake {
     private int moveCounter = 0;
     private int foodEaten = 0;
     private static int level = 1;
+    private int numObstacles = 0;
 
     /*
      * Constructor
@@ -105,13 +106,19 @@ public class SnakeHead extends Snake {
         if(foodEaten%5 == 0) {
             level++; 
         }
-        // Speed up every 2 levels
+        
         if(level % 2 == 0) {
+            // Speed up every 2 levels
             if(moveDelay > 3) {
                 moveDelay -= 1;
+                setSpeed(moveDelay);
             }
-            setSpeed(moveDelay);
-            world.createObstacle();
+            
+            if(numObstacles < 10) {
+                world.createObstacle();
+                numObstacles++;
+            }
+            
         }
     }
     	
