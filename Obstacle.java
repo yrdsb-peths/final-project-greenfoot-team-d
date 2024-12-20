@@ -3,7 +3,7 @@ import greenfoot.*;
 public class Obstacle extends Actor{
 
     public Obstacle() {
-        GreenfootImage block = new GreenfootImage("images/png/wall_block_32_0.png");
+        GreenfootImage block = new GreenfootImage("images/png/wall_block_64_0.png");
         setImage(block);
     }
 
