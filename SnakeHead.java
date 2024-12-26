@@ -6,10 +6,11 @@ public class SnakeHead extends Snake {
     private int dy = 0;  // Movement in y-direction
     
     private LinkedList<SnakeBody> body = new LinkedList<>();
-    private int moveDelay = 5; // Speed control
+    private int moveDelay = 8; // Speed control
     private int moveCounter = 0;
     private int foodEaten = 0;
     private static int level = 1;
+    private int numObstacles = 0;
 
     /*
      * Constructor
@@ -58,8 +59,16 @@ public class SnakeHead extends Snake {
         int previousX = getX();
         int previousY = getY();
 
+        int newX = previousX + dx;
+        int newY = previousY + dy;
+
         // Move the snake head
-        setLocation(previousX+dx, previousY+dy);
+        setLocation(newX, newY);
+        if(newX > 585 || newX < 15 || newY > 385 || newY < 17) {
+            //gameover screen;
+        }
+
+        
 
         // Move the body
         for(SnakeBody b : body) {
@@ -90,6 +99,28 @@ public class SnakeHead extends Snake {
     public static int getLevel() {
         return level;
     }
+
+    public void changeLevel() {
+        GameWorld world = (GameWorld) getWorld();
+
+        if(foodEaten%5 == 0) {
+            level++; 
+        }
+        
+        if(level % 2 == 0) {
+            // Speed up every 2 levels
+            if(moveDelay > 3) {
+                moveDelay -= 1;
+                setSpeed(moveDelay);
+            }
+            
+            if(numObstacles < 10) {
+                world.createObstacle();
+                numObstacles++;
+            }
+            
+        }
+    }
     	
 
     public void checkCollision() {
@@ -97,20 +128,12 @@ public class SnakeHead extends Snake {
         if (actor != null) {
             Food food = (Food) actor;
             GameWorld world = (GameWorld) getWorld();
-            
+
             grow();
             world.removeObject(food);
             world.spawnFood();
-
             foodEaten++;
-            if(foodEaten%5 == 0) {
-                level++; 
-
-                // Speed up every 2 levels
-                if(level % 2 == 0) {
-                    setSpeed(moveDelay--);
-                }
-            }
+            changeLevel();
 
         }
     }
