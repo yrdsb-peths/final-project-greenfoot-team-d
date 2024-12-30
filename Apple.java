@@ -7,7 +7,7 @@ public class Apple extends Food{
      */
     public Apple() {
         // Load and set image
-        GreenfootImage apple = new GreenfootImage("images/png/apple_alt_32.png");
+        GreenfootImage apple = new GreenfootImage("images/apple.png");
         setImage(apple);
         
     }
