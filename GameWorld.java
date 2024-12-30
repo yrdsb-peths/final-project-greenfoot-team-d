@@ -9,7 +9,7 @@ public class GameWorld extends World {
     // private static int highScore = 0;
 
     // private Button musicButton;
-
+    private World home;
     List<int[]> snake = new ArrayList<>();
     Snake snakeHead;
     Random random = new Random();
@@ -19,10 +19,11 @@ public class GameWorld extends World {
     /*
      * Constructor 
      */
-    public GameWorld() {
+    public GameWorld(World home) {
         super(600, 400, 1);
         setBackground("images/green background.png");
-
+        this.home = home;
+        
         // // Add music button 
         // this.musicButton = musicButton;
         // addObject(musicButton, 950, 555);
