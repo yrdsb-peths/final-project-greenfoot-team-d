@@ -6,8 +6,8 @@ public class StartButton extends Button {
         super(action); // calls super class constructor 
 
         // // Load and set image
-        // GreenfootImage image = new GreenfootImage("images/startButton.png");
-        // setImage(image);
+        GreenfootImage image = new GreenfootImage("images/Button.png");
+        setImage(image);
     }
 
 }

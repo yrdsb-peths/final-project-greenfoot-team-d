@@ -16,11 +16,11 @@ public class InstructionScreen extends World
     private String[] allText;
     private int currentIndex = 0;
     private Label instructionLabel; 
-    public InstructionScreen() 
+    public InstructionScreen(World home) 
     {    
         super(600, 400, 1);
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        
+        this.home = home;
         
         allText = new String[] {
             "Eat as much food as possible without \n crashing into walls or yourself.",

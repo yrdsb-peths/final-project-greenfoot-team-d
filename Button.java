@@ -2,13 +2,15 @@ import greenfoot.*;
 
 public class Button extends Actor {
     private Runnable action;
-    private GreenfootSound clickSound = new GreenfootSound("sounds/mouseClick.mp3");
+    private GreenfootSound clickSound = new GreenfootSound("sounds/buttonClicked.mp3");
 
     /*
      * Constructor
      */
     public Button(Runnable action) {
         this.action = action;
+        GreenfootImage image = new GreenfootImage("images/button.png");
+        setImage(image);
     }
 
     /*
