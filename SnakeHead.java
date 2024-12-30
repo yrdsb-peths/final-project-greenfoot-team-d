@@ -66,6 +66,7 @@ public class SnakeHead extends Snake {
         setLocation(newX, newY);
         if(newX > 585 || newX < 15 || newY > 385 || newY < 17) {
             //gameover screen;
+            
         }
 
         
@@ -121,7 +122,7 @@ public class SnakeHead extends Snake {
             
         }
     }
-    	
+        
 
     public void checkCollision() {
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
