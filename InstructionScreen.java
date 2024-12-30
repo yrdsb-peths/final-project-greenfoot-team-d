@@ -23,7 +23,7 @@ public class InstructionScreen extends World
         
         
         allText = new String[] {
-            "Eat as much food as possible without \n crashing into walls or yourself.",
+            "Eat as much food as possible \n without crashing into walls or \n yourself.",
             "The snake will grow depending on how much food you eat",
             "The difficulty of the game will get harder \n as the levels increase",
             "Use Arrow Keys to control the snake's movement"
