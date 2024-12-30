@@ -6,7 +6,7 @@ public class EndScreen extends World {
 
     {
         super(600, 400, 1);
-        // setBackground("images/black-background.jpg");
+        setBackground("images/instructionBackground.png");
 
         // // Update high score
         // if (GameWorld.getScore() > GameWorld.getHighScore()) {
