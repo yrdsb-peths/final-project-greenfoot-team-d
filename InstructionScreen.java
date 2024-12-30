@@ -20,6 +20,9 @@ public class InstructionScreen extends World
         "Use Arrow Keys to control \n the snake's movement"};
     private int currentIndex = 0;
     private Label instructionLabel = new Label(allText[currentIndex], 50); 
+    private Label next;
+    Button nextButton = new Button(this::nextScreen);
+    
     public InstructionScreen(World home) 
     {    
         super(600, 400, 1);
@@ -31,9 +34,9 @@ public class InstructionScreen extends World
         
         addObject(instructionLabel, 250, 200);
         
-        Label nextLabel = new Label("Next", 25);
-        addObject(nextLabel, 500, 35);
-        addObject(new Button(this::nextScreen), 500, 70);
+        next = new Label("Next", 25);
+        addObject(next, 500, 35);
+        addObject(nextButton, 500, 70);
         
         Label prevLabel = new Label("Back", 25);
         addObject(prevLabel, 100, 35);
@@ -50,14 +53,28 @@ public class InstructionScreen extends World
             currentIndex++;
             instructionLabel.setValue(allText[currentIndex]);
         }
+        if (currentIndex == allText.length - 1) {
+            removeObject(next); 
+            removeObject(nextButton); 
+        }
     }
     
     private void prevScreen()
     {
-        if (currentIndex > 0) 
+        if(currentIndex == 0)
+        {
+            Greenfoot.setWorld(home);
+            return;
+        }
+        else
         {
             currentIndex--;
             instructionLabel.setValue(allText[currentIndex]);
+        }
+        if (currentIndex < allText.length - 1 && !getObjects(Button.class).contains(nextButton)) 
+        {
+            addObject(next, 500, 35);
+            addObject(nextButton, 500, 70);
         }
     }
 }
