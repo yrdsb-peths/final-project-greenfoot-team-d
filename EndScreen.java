@@ -2,12 +2,14 @@ import greenfoot.*;
 
 public class EndScreen extends World {
     
-    public EndScreen(Button musicButton) 
+    public EndScreen() 
 
     {
         super(600, 400, 1);
         setBackground("images/instructionBackground.png");
-
+    
+        Label gameOverLabel = new Label("Game Over!", 40);
+        addObject(gameOverLabel, 300, 150);
         // // Update high score
         // if (GameWorld.getScore() > GameWorld.getHighScore()) {
         //     GameWorld.setHighScore(GameWorld.getScore());
@@ -26,12 +28,11 @@ public class EndScreen extends World {
 
     }
 
-    // /*
-    //  * Return back to title screen
-    //  */
-    // public void backToMenu() {
-    //     Greenfoot.setWorld(new TitleScreen());
-    // }
+    
+    // Return back to title screen
+    public void backToMenu() {
+        Greenfoot.setWorld(new TitleScreen());
+    }
 
 
 }
