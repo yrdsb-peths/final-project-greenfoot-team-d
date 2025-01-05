@@ -11,6 +11,8 @@ public class SnakeHead extends Snake {
     private int foodEaten = 0;
     private static int level = 1;
     private int numObstacles = 0;
+    
+    private GreenfootSound eatSound = new GreenfootSound("sounds/apple.mp3");
 
     /*
      * Constructor
@@ -129,7 +131,9 @@ public class SnakeHead extends Snake {
         if (actor != null) {
             Food food = (Food) actor;
             GameWorld world = (GameWorld) getWorld();
-
+            // play sound 
+            eatSound.play();
+            
             grow();
             world.removeObject(food);
             world.spawnFood();
