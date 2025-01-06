@@ -8,11 +8,11 @@ public class EndScreen extends World {
         super(600, 400, 1);
         setBackground("images/instructionBackground.png");
     
-        // Label gameOverLabel = new Label("Game Over!", 40);
-        // addObject(gameOverLabel, 300, 150);
+        Label gameOverLabel = new Label("Game Over!", 40);
+        addObject(gameOverLabel, 300, 150);
 
-        // Button homeButton = new HomeButton(this::backToHome);
-       //  addObject(homeButton, 300, 200);
+        Button homeButton = new HomeButton(this::backToHome);
+        addObject(homeButton, 300, 200);
         
         // // Update high score
         // if (GameWorld.getScore() > GameWorld.getHighScore()) {
