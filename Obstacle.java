@@ -14,8 +14,7 @@ public class Obstacle extends Actor{
     private void checkCollision() {
         Actor actor = getOneIntersectingObject(Snake.class); // Might be null
         if (actor != null) {
-            //gameover screen;
-            Greenfoot.setWorld(new EndScreen());
+            // game over screen
         
         }
     }
