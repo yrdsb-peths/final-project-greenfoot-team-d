@@ -69,7 +69,7 @@ public class SnakeHead extends Snake {
         if(newX > 585 || newX < 15 || newY > 385 || newY < 17) {
             //gameover screen;
             Greenfoot.setWorld(new EndScreen());
-            return;
+            //return;
         }
 
         
