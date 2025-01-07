@@ -24,7 +24,7 @@ public class HighScore extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        setBackground("images/grid2.png");
+        setBackground("images/instructionBackground.png");
         this.titleScreen = titleScreen;
         
         Label score = new Label("High Scores!",50);
