@@ -140,6 +140,7 @@ public class SnakeHead extends Snake {
             world.spawnFood();
             foodEaten++;
             changeLevel();
+            world.increaseScore();
 
         }
     }

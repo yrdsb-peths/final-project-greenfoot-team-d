@@ -88,4 +88,9 @@ public class GameWorld extends World {
     public static void setHighScore(int theHighScore) {
         highScore = theHighScore;
     }
+    
+    public void increaseScore() {
+        score++;
+        scoreLabel.setValue("Score: " + score);
+    }
 }
