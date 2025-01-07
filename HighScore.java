@@ -24,6 +24,7 @@ public class HighScore extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        setBackground("images/grid2.png");
         this.titleScreen = titleScreen;
         
         Label score = new Label("High Scores!",50);
@@ -31,9 +32,9 @@ public class HighScore extends World
         
         // highscore map with 3 names
         highScores = new HashMap<>();
-        highScores.put("Mr.Chan", 2900);
-        highScores.put("Tiffany", 2800);
-        highScores.put("Andrew", 1000);
+        highScores.put("Mr.Chan", 20);
+        highScores.put("Tiffany", 10);
+        highScores.put("Andrew", 1);
         
         addScores();
         playButton();
