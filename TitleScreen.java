@@ -22,13 +22,17 @@ public class TitleScreen extends World {
          Label instructionLabel = new Label("Instructions", 25);
          addObject(instructionLabel, getWidth() / 2 - 200, 135);
          addObject(new Button(() -> Greenfoot.setWorld(new InstructionScreen(this))), 100, 170);
+         
+         Label scoreLabel = new Label("HighScore", 25);
+         addObject(scoreLabel, getWidth()/2 - 200, 205);
+         addObject(new Button(() -> Greenfoot.setWorld(new HighScore(this))), 100, 240);
 
     //     musicButton = new MusicButton(this::changeVolume);
     //     addObject(musicButton, x, y);
 
     }
 
-    // /*
+    //
     //  * Plays or pauses the music
     //  */
     // public void changeVolume() {
