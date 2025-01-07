@@ -10,6 +10,12 @@ public class EndScreen extends World {
     
         Label gameOverLabel = new Label("Game Over!", 40);
         addObject(gameOverLabel, 300, 150);
+
+        Button homeButton = new HomeButton(this::backToHome);
+        addObject(homeButton, 300, 200);
+
+        SnakeHead.resetLevel();
+        
         // // Update high score
         // if (GameWorld.getScore() > GameWorld.getHighScore()) {
         //     GameWorld.setHighScore(GameWorld.getScore());
@@ -30,7 +36,7 @@ public class EndScreen extends World {
 
     
     // Return back to title screen
-    public void backToMenu() {
+    public void backToHome() {
         Greenfoot.setWorld(new TitleScreen());
     }
 

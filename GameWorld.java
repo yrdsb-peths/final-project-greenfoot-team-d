@@ -35,7 +35,7 @@ public class GameWorld extends World {
     }
 
     public void act(){
-        setPaintOrder(Food.class, Obstacle.class, SnakeHead.class, SnakeBody.class);
+        setPaintOrder(Label.class,Food.class, Obstacle.class, SnakeHead.class, SnakeBody.class);
         level = SnakeHead.getLevel();
         levelLabel.setValue("Level " + level);
     }
