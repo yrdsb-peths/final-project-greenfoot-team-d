@@ -29,6 +29,9 @@ public class EndScreen extends World {
         // Label highScoreLabel = new Label("Highscore: " + GameWorld.getHighScore(), 40);
         // addObject(highScoreLabel, 110, 50);  
 
+        // Button menuButton = new BackButton(this::backToMenu);
+        // addObject(menuButton, 550, 350);
+
     }
 
     
