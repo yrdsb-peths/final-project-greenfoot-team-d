@@ -4,7 +4,7 @@ import greenfoot.*;
 import java.util.Random;
 
 public class GameWorld extends World {
-    
+    private Label scoreLabel;
     private static int score = 0;
     private static int highScore = 0;
 
@@ -15,6 +15,7 @@ public class GameWorld extends World {
     Random random = new Random();
     Label levelLabel; 
     int level = SnakeHead.getLevel();; 
+    
 
     /*
      * Constructor 
@@ -32,6 +33,8 @@ public class GameWorld extends World {
         spawnFood();
         levelLabel = new Label("Level " + level, 32);
         addObject(levelLabel, 50, 20);
+        scoreLabel = new Label("Score: " + score, 32);
+        addObject(scoreLabel, 55, 55); 
     }
 
     public void act(){
