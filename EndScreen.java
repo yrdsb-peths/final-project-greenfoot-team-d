@@ -11,7 +11,7 @@ public class EndScreen extends World {
         Label gameOverLabel = new Label("Game Over!", 40);
         addObject(gameOverLabel, 300, 150);
 
-        Button homeButton = new HomeButton(this::backToHome);
+        Button homeButton = new Button(this::backToHome);
         addObject(homeButton, 300, 200);
 
         SnakeHead.resetLevel();
