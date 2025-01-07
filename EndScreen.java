@@ -13,6 +13,8 @@ public class EndScreen extends World {
 
         Button homeButton = new HomeButton(this::backToHome);
         addObject(homeButton, 300, 200);
+
+        SnakeHead.resetLevel();
         
         // // Update high score
         // if (GameWorld.getScore() > GameWorld.getHighScore()) {
