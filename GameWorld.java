@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class GameWorld extends World {
     
-    // private static int score = 0;
-    // private static int highScore = 0;
+    private static int score = 0;
+    private static int highScore = 0;
 
     // private Button musicButton;
     private World home;
@@ -64,31 +64,25 @@ public class GameWorld extends World {
         food.checkPosition();
     }
 
-    //  /*
-    //  * Returns score
-    //  */
-    // public static int getScore() {
-    //     return score;
-    // }
+    // Returns score
+    public static int getScore() {
+        return score;
+    }
 
-    //  /*
-    //  * Returns high score
-    //  */
-    // public static int getHighScore() {
-    //     return highScore;
-    // }
+    // Returns high score
+    public static int getHighScore() {
+        return highScore;
+    }
 
-    //     /*
-    //  * Resets the score
-    //  */
-    // public static void resetScore() {
-    //     score = 0;
-    // }
+    // Resets the score
+    public static void resetScore() {
+        score = 0;
+    }
 
     // /*
     //  * Sets the high score
     //  */
-    // public static void setHighScore(int theHighScore) {
-    //     highScore = theHighScore;
-    // }
+    public static void setHighScore(int theHighScore) {
+        highScore = theHighScore;
+    }
 }
