@@ -14,27 +14,34 @@ public class HighScore extends World
 {
     private Map<String, Integer> highScores;
     private World previousScreen;
+    
+    private TitleScreen titleScreen;
     /**
      * Constructor for objects of class HighScore.
      * 
      */
-    public HighScore()
+    public HighScore(TitleScreen titleScreen)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        this.previousScreen = previousScreen;
+        setBackground("images/grid2.png");
+        this.titleScreen = titleScreen;
         
         Label score = new Label("High Scores!",50);
-        addObject(score, 300, 90);
+        addObject(score, 300, 80);
         
         // highscore map with 3 names
         highScores = new HashMap<>();
-        highScores.put("Mr.Chan", 2900);
-        highScores.put("Tiffany", 2800);
-        highScores.put("Andrew", 1000);
+        highScores.put("Mr.Chan", 20);
+        highScores.put("Tiffany", 10);
+        highScores.put("Andrew", 1);
         
         addScores();
-        returnButton();
+        playButton();
+        
+        Label backLabel = new Label("Back", 20);
+        addObject(backLabel, getWidth() / 2, 310);
+        addObject(new Button(() -> Greenfoot.setWorld(titleScreen)), getWidth() / 2, 280);        
     }
     
     private void addScores(){
@@ -49,19 +56,16 @@ public class HighScore extends World
           String text = entry.getKey() + ": " + entry.getValue();
           Label scoreLabel = new Label(text, 24);
           addObject(scoreLabel, 300, y);
-          y+= 50;
+          y+= 35;
         }
     }
     
-     public void returnButton()
+     public void playButton()
     {
-        addObject(new Button(()-> back()), 300, 350);
-        Label returnButtonLabel = new Label("Return to menu", 20);
-        addObject(returnButtonLabel, 300, 385);
+        // addObject(new Button(()-> back()), 300, 350);
+        Label playButtonLabel = new Label("Play", 20);
+        addObject(playButtonLabel, 300, 385);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 300, 350);
     }
 
-    public void back()
-    {
-        Greenfoot.setWorld(previousScreen);
-    }
 }
