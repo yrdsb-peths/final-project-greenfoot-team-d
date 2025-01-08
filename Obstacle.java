@@ -1,7 +1,6 @@
 import greenfoot.*;
 
 public class Obstacle extends Actor{
-
     public Obstacle() {
         GreenfootImage block = new GreenfootImage("images/png/wall_block_64_0.png");
         setImage(block);
@@ -15,7 +14,7 @@ public class Obstacle extends Actor{
         Actor actor = getOneIntersectingObject(Snake.class); // Might be null
         if (actor != null) {
             // game over screen
-        
+            Greenfoot.setWorld(new EndScreen());
         }
     }
 

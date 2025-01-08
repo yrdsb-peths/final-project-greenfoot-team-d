@@ -1,4 +1,6 @@
 import java.util.LinkedList;
+import java.util.Random;
+
 import greenfoot.*;
 
 public class SnakeHead extends Snake {
@@ -13,6 +15,7 @@ public class SnakeHead extends Snake {
     private int numObstacles = 0;
     
     private GreenfootSound eatSound = new GreenfootSound("sounds/apple.mp3");
+    private GreenfootSound levelUpSound = new GreenfootSound("sounds/levelUp.mp3");
 
     /*
      * Constructor
@@ -72,8 +75,6 @@ public class SnakeHead extends Snake {
             return;
         }
 
-        
-
         // Move the body
         for(SnakeBody b : body) {
             int tempX = b.getX();
@@ -100,6 +101,10 @@ public class SnakeHead extends Snake {
         return foodEaten;
     }
 
+    public static void resetLevel(){
+        level = 1;
+    }
+
     public static int getLevel() {
         return level;
     }
@@ -109,6 +114,7 @@ public class SnakeHead extends Snake {
 
         if(foodEaten%5 == 0) {
             level++; 
+            levelUpSound.play();
         }
         
         if(level % 2 == 0) {
@@ -124,8 +130,16 @@ public class SnakeHead extends Snake {
             }
             
         }
+
+        if(level >= 5) {
+            Random random = new Random();
+            Boolean bool = random.nextBoolean();
+
+            if(bool) {
+                reverseSnake();
+            }
+        }
     }
-        
 
     public void checkCollision() {
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
@@ -144,4 +158,34 @@ public class SnakeHead extends Snake {
 
         }
     }
+
+    // private void reverseSnake() {
+        
+    //     int j = body.size()-1;
+
+    //     for(int i = 0; i < j; i++, j--) {
+    //         SnakeBody temp = body.get(i);
+    //         body.set(i,body.get(j));
+    //         body.set(j,temp);
+    //     }
+
+    //     int newX = body.get(body.size()-1).getX();
+    //     int newY = body.get(body.size()-1).getY();
+
+    //     body.get(body.size()-1).setLocation(getX(),getY());
+    //     setLocation(newX,newY);
+        
+    // }
+
+    private void reverseSnake() {
+        int newX = body.get(body.size()-1).getX();
+        int newY = body.get(body.size()-1).getY();
+
+        body.get(body.size()-1).setLocation(getX(),getY());
+        setLocation(newX,newY);
+
+        dx *= -1;
+        dy *= -1;
+    }
+
 }
