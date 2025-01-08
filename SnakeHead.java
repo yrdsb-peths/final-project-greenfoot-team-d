@@ -16,10 +16,10 @@ public class SnakeHead extends Snake {
     
     private GreenfootSound eatSound = new GreenfootSound("sounds/apple.mp3");
     GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-    GreenfootImage pinkHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-    GreenfootImage orangeHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-    GreenfootImage greenHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-    GreenfootImage redHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
+    GreenfootImage pinkHead = new GreenfootImage("images/png/pinkHead.png");
+    GreenfootImage orangeHead = new GreenfootImage("images/png/orangeHead.png");
+    GreenfootImage greenHead = new GreenfootImage("images/png/greenHead.png");
+    GreenfootImage redHead = new GreenfootImage("images/png/redHead.png");
     /*
      * Constructor
      */
