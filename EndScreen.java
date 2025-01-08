@@ -10,6 +10,7 @@ public class EndScreen extends World {
     
         Label gameOverLabel = new Label("Game Over!", 40);
         addObject(gameOverLabel, 300, 150);
+        GameWorld.resetScore();
         // // Update high score
         // if (GameWorld.getScore() > GameWorld.getHighScore()) {
         //     GameWorld.setHighScore(GameWorld.getScore());

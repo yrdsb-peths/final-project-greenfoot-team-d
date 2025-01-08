@@ -93,4 +93,5 @@ public class GameWorld extends World {
         score++;
         scoreLabel.setValue("Score: " + score);
     }
+    
 }
