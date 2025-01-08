@@ -26,10 +26,10 @@ public class TitleScreen extends World {
          Label scoreLabel = new Label("HighScore", 25);
          addObject(scoreLabel, getWidth()/2 - 200, 205);
          addObject(new Button(() -> Greenfoot.setWorld(new HighScore(this))), 100, 240);
-
+    
+         addObject(new Settings(() -> Greenfoot.setWorld(new SettingScreen(this))), 550, 50);
     //     musicButton = new MusicButton(this::changeVolume);
     //     addObject(musicButton, x, y);
-
     }
 
     //
