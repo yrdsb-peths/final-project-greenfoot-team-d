@@ -15,6 +15,7 @@ public class SnakeHead extends Snake {
     private int numObstacles = 0;
     
     private GreenfootSound eatSound = new GreenfootSound("sounds/apple.mp3");
+    private GreenfootSound levelUpSound = new GreenfootSound("sounds/levelUp.mp3");
 
     /*
      * Constructor
@@ -113,6 +114,7 @@ public class SnakeHead extends Snake {
 
         if(foodEaten%5 == 0) {
             level++; 
+            levelUpSound.play();
         }
         
         if(level % 2 == 0) {
