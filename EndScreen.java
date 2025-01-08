@@ -9,13 +9,20 @@ public class EndScreen extends World {
         setBackground("images/instructionBackground.png");
     
         Label gameOverLabel = new Label("Game Over!", 40);
-        addObject(gameOverLabel, 300, 150);
+        addObject(gameOverLabel, 300, 100);
 
         Button homeButton = new Button(this::backToHome);
-        addObject(homeButton, 300, 200);
+        addObject(homeButton, 300, 250);
         Label playAgainLabel = new Label("Back to Home", 20);
-        addObject(playAgainLabel, 300, 230);
+        addObject(playAgainLabel, 300, 280);
+        
+        // Restart label
+        Label restartLabel = new Label("Restart", 20);
+        addObject(restartLabel, getWidth() / 2, 200);
+        // Return to game world
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), getWidth() / 2, 170);
 
+        GameWorld.resetScore();
         SnakeHead.resetLevel();
         
         // // Update high score
@@ -30,10 +37,6 @@ public class EndScreen extends World {
         // // High score label
         // Label highScoreLabel = new Label("Highscore: " + GameWorld.getHighScore(), 40);
         // addObject(highScoreLabel, 110, 50);  
-
-        // Button menuButton = new BackButton(this::backToMenu);
-        // addObject(menuButton, 550, 350);
-
     }
 
     
