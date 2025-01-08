@@ -13,6 +13,8 @@ public class EndScreen extends World {
 
         Button homeButton = new Button(this::backToHome);
         addObject(homeButton, 300, 200);
+        Label playAgainLabel = new Label("Back to Home", 20);
+        addObject(playAgainLabel, 300, 230);
 
         SnakeHead.resetLevel();
         
