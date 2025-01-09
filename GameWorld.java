@@ -41,6 +41,10 @@ public class GameWorld extends World {
         setPaintOrder(Label.class,Food.class, Obstacle.class, SnakeHead.class, SnakeBody.class);
         level = SnakeHead.getLevel();
         levelLabel.setValue("Level " + level);
+        
+        if (Greenfoot.getRandomNumber(1000) < 2) { 
+            spawnPowerUp();
+        }
     }
 
     /*
@@ -92,5 +96,13 @@ public class GameWorld extends World {
     public void increaseScore() {
         score++;
         scoreLabel.setValue("Score: " + score);
+    }
+    
+    public void spawnPowerUp() {
+        PowerUp powerUp = new PowerUp();
+        // spawn random x and y position
+        int x = Greenfoot.getRandomNumber(585) + 15; 
+        int y = Greenfoot.getRandomNumber(385) + 15; 
+        addObject(powerUp, x, y);  
     }
 }
