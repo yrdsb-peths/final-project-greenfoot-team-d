@@ -82,9 +82,9 @@ public class GameWorld extends World {
         score = 0;
     }
 
-    // /*
-    //  * Sets the high score
-    //  */
+    /*
+     * Sets the high score
+     */
     public static void setHighScore(int theHighScore) {
         highScore = theHighScore;
     }
