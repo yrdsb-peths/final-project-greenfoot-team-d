@@ -1,6 +1,7 @@
 import greenfoot.*;
 
 public class EndScreen extends World {
+    private GreenfootSound gameOverSound;
     
     public EndScreen() 
     {
@@ -9,6 +10,8 @@ public class EndScreen extends World {
     
         Label gameOverLabel = new Label("Game Over!", 40);
         addObject(gameOverLabel, 300, 100);
+        gameOverSound = new GreenfootSound("gameover.mp3");
+        gameOverSound.play();
 
         Button homeButton = new Button(this::backToHome);
         addObject(homeButton, 300, 250);
