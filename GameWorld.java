@@ -102,11 +102,16 @@ public class GameWorld extends World {
     public void spawnPowerUp() {
         PowerUp powerUp = new PowerUp();
         // spawn random x and y position
+        
         int x = Greenfoot.getRandomNumber(585) + 15; 
         int y = Greenfoot.getRandomNumber(385) + 15; 
-        addObject(powerUp, x, y); 
+        if (getObjects(PowerUp.class).isEmpty())
+        {
+            addObject(powerUp, x, y); 
+        }
         
     }
+    
     
 
 }

@@ -74,6 +74,11 @@ public class SnakeHead extends Snake {
         }
     }
 
+    public void makeInvincible(int duration) {
+        isInvincible = true;
+        invincibilityTimer = duration;
+    }
+    
     private void moveSnake() {
         // Save the previous position of the head
         int previousX = getX();
@@ -171,8 +176,16 @@ public class SnakeHead extends Snake {
             foodEaten++;
             changeLevel();
             world.increaseScore();
+            if (!isInvincible) {
+                Obstacle obstacle = (Obstacle) getOneIntersectingObject(Obstacle.class);
+                if (obstacle != null) {
+                    Greenfoot.setWorld(new EndScreen());
+                }
+            }
 
         }
+        
+        
         
         Actor powerUp = getOneIntersectingObject(PowerUp.class);
         if (powerUp != null) {
