@@ -14,7 +14,7 @@ public class GameWorld extends World {
     Snake snakeHead;
     Random random = new Random();
     Label levelLabel; 
-    int level = SnakeHead.getLevel();; 
+    int level = SnakeHead.getLevel(); 
     
 
     /*
@@ -25,6 +25,7 @@ public class GameWorld extends World {
         setBackground("images/grid2.png");
         this.home = home;
         
+    
         // // Add music button 
         // this.musicButton = musicButton;
         // addObject(musicButton, 950, 555);
@@ -103,6 +104,9 @@ public class GameWorld extends World {
         // spawn random x and y position
         int x = Greenfoot.getRandomNumber(585) + 15; 
         int y = Greenfoot.getRandomNumber(385) + 15; 
-        addObject(powerUp, x, y);  
+        addObject(powerUp, x, y); 
+        
     }
+    
+
 }

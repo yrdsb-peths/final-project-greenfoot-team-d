@@ -37,9 +37,21 @@ public class SnakeHead extends Snake {
             moveSnake();
             moveCounter = 0;
         }
+        
+        // power up
+        if (isInvincible) {
+            invincibilityTimer--;
+            if (invincibilityTimer <= 0) {
+                isInvincible = false;
+            }
+        }
 
         checkKeyInput();
         checkCollision();
+        
+         if(isInvincible && invincibilityTimer <= 0) {
+            deactivateInvincibility();
+        }
 
     }
 
@@ -146,9 +158,10 @@ public class SnakeHead extends Snake {
 
     public void checkCollision() {
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
+        GameWorld world = (GameWorld) getWorld();
         if (actor != null) {
             Food food = (Food) actor;
-            GameWorld world = (GameWorld) getWorld();
+
             // play sound 
             eatSound.play();
             
@@ -166,12 +179,38 @@ public class SnakeHead extends Snake {
             getWorld().removeObject(powerUp);
             activateInvincibility();
         }
+        
+        if(!isInvincible){
+            Actor obstacle = getOneIntersectingObject(Obstacle.class);
+            if (obstacle != null) {
+                Greenfoot.setWorld(new EndScreen()); 
+                return;
+            }
+        }
+        
+        Actor food = getOneIntersectingObject(Food.class);
+        if (food != null) {
+            Food f = (Food) food;
+            getWorld().removeObject(f);
+            grow();
+            world.increaseScore();
+            world.spawnFood();
+        }
     }
     
     private void activateInvincibility() {
         isInvincible = true;
         invincibilityTimer = 300; 
+        GreenfootImage invincibleImage = new GreenfootImage("images/png/snake_green_head_32.png");
+        setImage(invincibleImage);
     }
+    
+    private void deactivateInvincibility() {
+        isInvincible = false;
+        GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
+        setImage(yellowHead);
+    }
+    
 
     // private void reverseSnake() {
         
