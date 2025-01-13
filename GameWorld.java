@@ -8,14 +8,14 @@ public class GameWorld extends World {
     private static int score = 0;
     private static int highScore = 0;
 
-    // private Button musicButton;
     private World home;
+
     List<int[]> snake = new ArrayList<>();
     Snake snakeHead;
-    Random random = new Random();
-    Label levelLabel; 
-    int level = SnakeHead.getLevel();; 
     
+    Label levelLabel; 
+    int level = SnakeHead.getLevel();
+    Random random = new Random();
 
     /*
      * Constructor 
@@ -24,15 +24,14 @@ public class GameWorld extends World {
         super(600, 400, 1);
         setBackground("images/grid2.png");
         this.home = home;
-        
-        // // Add music button 
-        // this.musicButton = musicButton;
-        // addObject(musicButton, 950, 555);
 
         createSnake();
         spawnFood();
+
+        // Labels 
         levelLabel = new Label("Level " + level, 32);
         addObject(levelLabel, 50, 20);
+        
         scoreLabel = new Label("Score: " + score, 32);
         addObject(scoreLabel, 55, 55); 
     }
@@ -43,14 +42,13 @@ public class GameWorld extends World {
         levelLabel.setValue("Level " + level);
     }
 
-    /*
-     * Create the snake 
-     */
+    // Creates the snake
     public void createSnake() {
         snakeHead = new SnakeHead();
         addObject(snakeHead, getWidth()/2, getHeight()/2);
     }
 
+    // Create obstacles
     public void createObstacle() {
         Obstacle obstacle = new Obstacle();
         int x = random.nextInt(30,570);
@@ -59,6 +57,7 @@ public class GameWorld extends World {
         obstacle.checkPosition();
     }
 
+    // Spawns food 
     public void spawnFood() {
         Food food = new Apple();
         int x = random.nextInt(15,585);
@@ -82,13 +81,12 @@ public class GameWorld extends World {
         score = 0;
     }
 
-    /*
-     * Sets the high score
-     */
+    // Sets the high score
     public static void setHighScore(int theHighScore) {
         highScore = theHighScore;
     }
     
+    // Increases the score and change label 
     public void increaseScore() {
         score++;
         scoreLabel.setValue("Score: " + score);
