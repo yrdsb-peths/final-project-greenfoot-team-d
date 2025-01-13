@@ -47,11 +47,10 @@ public class SnakeHead extends Snake {
         }
 
         checkKeyInput();
+        handleInvincibility();
         checkCollision();
         
-         if(isInvincible && invincibilityTimer <= 0) {
-            deactivateInvincibility();
-        }
+        
 
     }
 
@@ -164,6 +163,7 @@ public class SnakeHead extends Snake {
     public void checkCollision() {
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
         GameWorld world = (GameWorld) getWorld();
+        
         if (actor != null) {
             Food food = (Food) actor;
 
@@ -186,11 +186,10 @@ public class SnakeHead extends Snake {
         }
         
         
-        
         Actor powerUp = getOneIntersectingObject(PowerUp.class);
         if (powerUp != null) {
+            activateInvincibility(180);
             getWorld().removeObject(powerUp);
-            activateInvincibility();
         }
         
         if(!isInvincible){
@@ -211,19 +210,30 @@ public class SnakeHead extends Snake {
         }
     }
     
-    private void activateInvincibility() {
+    
+    private void activateInvincibility(int duration) {
         isInvincible = true;
-        invincibilityTimer = 300; 
+        invincibilityTimer = duration; 
         GreenfootImage invincibleImage = new GreenfootImage("images/png/snake_green_head_32.png");
         setImage(invincibleImage);
     }
     
     private void deactivateInvincibility() {
         isInvincible = false;
+        invincibilityTimer = 0;
         GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
         setImage(yellowHead);
     }
     
+    private void handleInvincibility() {
+        if (isInvincible) {
+            System.out.println("Invincibility timer: " + invincibilityTimer);
+            invincibilityTimer--;
+            if (invincibilityTimer <= 0) {
+                deactivateInvincibility();
+            }
+        }
+    }
 
     // private void reverseSnake() {
         

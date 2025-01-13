@@ -7,6 +7,7 @@ public class GameWorld extends World {
     private Label scoreLabel;
     private static int score = 0;
     private static int highScore = 0;
+    private PowerUp currentPowerUp;
 
     // private Button musicButton;
     private World home;
@@ -43,7 +44,7 @@ public class GameWorld extends World {
         level = SnakeHead.getLevel();
         levelLabel.setValue("Level " + level);
         
-        if (Greenfoot.getRandomNumber(1000) < 2) { 
+        if (Greenfoot.getRandomNumber(1000) < 2 && currentPowerUp == null) { 
             spawnPowerUp();
         }
     }
@@ -100,18 +101,24 @@ public class GameWorld extends World {
     }
     
     public void spawnPowerUp() {
-        PowerUp powerUp = new PowerUp();
-        // spawn random x and y position
+        currentPowerUp = new PowerUp();
         
+        // spawn random x and y position
         int x = Greenfoot.getRandomNumber(585) + 15; 
         int y = Greenfoot.getRandomNumber(385) + 15; 
         if (getObjects(PowerUp.class).isEmpty())
         {
-            addObject(powerUp, x, y); 
+            addObject(currentPowerUp, x, y); 
         }
         
     }
     
+    public void removePowerUp() {
+        if (currentPowerUp != null && currentPowerUp.getWorld() != null) {
+            removeObject(currentPowerUp);
+            currentPowerUp = null;
+        }
+    }
     
 
 }

@@ -8,7 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PowerUp extends Actor
 {
-     public PowerUp() {
+    private int lifespan = 300; 
+    
+
+    public PowerUp() {
         GreenfootImage image = new GreenfootImage("powerup.png");
         setImage(image);
     }
@@ -19,6 +22,16 @@ public class PowerUp extends Actor
      */
     public void act()
     {
-        // Add your action code here.
+        lifespan--;
+        if (lifespan <= 0) {
+            deactivate();
+        }
+    }
+    
+    private void deactivate() {
+        // Remove the power-up from the world
+        if (getWorld() != null) {
+            getWorld().removeObject(this);
+        }
     }
 }
