@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 import java.util.Random;
-
 import greenfoot.*;
 
 public class SnakeHead extends Snake {
@@ -14,6 +13,7 @@ public class SnakeHead extends Snake {
     private static int level = 1;
     private int numObstacles = 0;
     
+    // Sounds 
     private GreenfootSound eatSound = new GreenfootSound("sounds/apple.mp3");
     private GreenfootSound levelUpSound = new GreenfootSound("sounds/levelUp.mp3");
 
@@ -87,31 +87,38 @@ public class SnakeHead extends Snake {
 
     }
 
+    // Create and add body to the linkedList
     private void grow() {
         SnakeBody b = new SnakeBody();
         getWorld().addObject(b,getX(),getY());
         body.add(b);
     }
 
+    // Sets the speed
     public void setSpeed(int speed) {
         moveDelay = speed;
     }
 
+    // Returns the amount of food eaten 
     public int getFoodEaten() {
         return foodEaten;
     }
 
+    // Resets level 
     public static void resetLevel(){
         level = 1;
     }
 
+    // Gets current level 
     public static int getLevel() {
         return level;
     }
 
+    // Changes to different level 
     public void changeLevel() {
         GameWorld world = (GameWorld) getWorld();
 
+        // level up every 5 food eaten 
         if(foodEaten%5 == 0) {
             level++; 
             levelUpSound.play();
@@ -124,6 +131,7 @@ public class SnakeHead extends Snake {
                 setSpeed(moveDelay);
             }
             
+            // Create 9 obstacles max 
             if(numObstacles < 10) {
                 world.createObstacle();
                 numObstacles++;
@@ -131,6 +139,7 @@ public class SnakeHead extends Snake {
             
         }
 
+        // Adding reverse movement when level is greater or equal to 5 
         if(level >= 5) {
             Random random = new Random();
             Boolean bool = random.nextBoolean();
@@ -141,12 +150,14 @@ public class SnakeHead extends Snake {
         }
     }
 
+    // Checks collision 
     public void checkCollision() {
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
+        
         if (actor != null) {
             Food food = (Food) actor;
             GameWorld world = (GameWorld) getWorld();
-            // play sound 
+            // Play sound 
             eatSound.play();
             
             grow();
@@ -159,24 +170,7 @@ public class SnakeHead extends Snake {
         }
     }
 
-    // private void reverseSnake() {
-        
-    //     int j = body.size()-1;
-
-    //     for(int i = 0; i < j; i++, j--) {
-    //         SnakeBody temp = body.get(i);
-    //         body.set(i,body.get(j));
-    //         body.set(j,temp);
-    //     }
-
-    //     int newX = body.get(body.size()-1).getX();
-    //     int newY = body.get(body.size()-1).getY();
-
-    //     body.get(body.size()-1).setLocation(getX(),getY());
-    //     setLocation(newX,newY);
-        
-    // }
-
+    // Reverses snake movement 
     private void reverseSnake() {
         int newX = body.get(body.size()-1).getX();
         int newY = body.get(body.size()-1).getY();

@@ -4,27 +4,26 @@ public class HighScore extends World
 {
     private TitleScreen titleScreen;
 
-    /**
-     * Constructor for HighScore.
-     * 
-     */
+    // Constructor for Highscore screen 
     public HighScore(TitleScreen titleScreen)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         setBackground("images/instructionBackground.png");
         this.titleScreen = titleScreen;
         
+        // Add buttons and labels 
         AddButtons();
         AddLabels();
     }
     
+    // Add buttons
     private void AddButtons()
     {
         addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 440, 210);
         addObject(new Button(() -> Greenfoot.setWorld(titleScreen)), 160, 210); 
     }
 
+    // Add labels 
     private void AddLabels()
     {
         // Big label

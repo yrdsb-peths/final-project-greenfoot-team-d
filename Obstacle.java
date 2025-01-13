@@ -1,6 +1,8 @@
 import greenfoot.*;
 
 public class Obstacle extends Actor{
+
+    // Constructor 
     public Obstacle() {
         GreenfootImage block = new GreenfootImage("images/png/wall_block_64_0.png");
         setImage(block);
@@ -10,6 +12,7 @@ public class Obstacle extends Actor{
         checkCollision();
     }
 
+    // Check collision with snake 
     private void checkCollision() {
         Actor actor = getOneIntersectingObject(Snake.class); // Might be null
         if (actor != null) {
@@ -18,21 +21,18 @@ public class Obstacle extends Actor{
         }
     }
 
+    // Checks collision with all the objects 
     public void checkPosition() {
-        Actor food = getOneIntersectingObject(Food.class); // Might be null
+        Actor food = getOneIntersectingObject(Food.class); 
         Actor obstacle = getOneIntersectingObject(Obstacle.class);
         Actor snake = getOneIntersectingObject(Snake.class);
-        GameWorld world = (GameWorld) getWorld();
-        if (food != null) {    
+ 
+        if (food != null || obstacle != null || snake != null) {    
            
+            GameWorld world = (GameWorld) getWorld();
             world.createObstacle();
             world.removeObject(this);   
-                   
-        }
-
-        if(obstacle != null || snake != null) {
-            world.createObstacle();
-            world.removeObject(this);   
+        
         }
     }
 }
