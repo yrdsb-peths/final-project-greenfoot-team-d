@@ -8,4 +8,4 @@
 - `Reverse movement` - snake will suddenly move in opposite direction 
 - `Debuffs` - 
 
-Enjoy our game!!
+We hope you enjoy our game!!
