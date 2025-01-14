@@ -7,3 +7,5 @@
 - `Obstacles` - obstacles will appear randomly
 - `Reverse movement` - snake will suddenly move in opposite direction 
 - `Debuffs` - 
+
+Enjoy our game!!
