@@ -31,6 +31,8 @@ public class PowerUp extends Actor
     private void deactivate() {
         // Remove the power-up from the world
         if (getWorld() != null) {
+            GameWorld world = (GameWorld) getWorld();
+            world.powerUpDeactivated();
             getWorld().removeObject(this);
         }
     }

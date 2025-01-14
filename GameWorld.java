@@ -7,7 +7,11 @@ public class GameWorld extends World {
     private Label scoreLabel;
     private static int score = 0;
     private static int highScore = 0;
+    
+    // power up
     private PowerUp currentPowerUp;
+    private int powerUpSpawnTimer = 0;
+    private boolean isPowerUpActive = false;
 
     // private Button musicButton;
     private World home;
@@ -37,6 +41,9 @@ public class GameWorld extends World {
         addObject(levelLabel, 50, 20);
         scoreLabel = new Label("Score: " + score, 32);
         addObject(scoreLabel, 55, 55); 
+        // initiatlize the power up spawn between each spawn
+        resetPowerUpSpawnTimer();
+        powerUpSpawnTimer = 600;
     }
 
     public void act(){
@@ -44,9 +51,17 @@ public class GameWorld extends World {
         level = SnakeHead.getLevel();
         levelLabel.setValue("Level " + level);
         
-        if (Greenfoot.getRandomNumber(1000) < 2 && currentPowerUp == null) { 
-            spawnPowerUp();
+        if (!isPowerUpActive && powerUpSpawnTimer > 0) {
+            powerUpSpawnTimer--; 
         }
+        
+        
+        if (powerUpSpawnTimer <= 0 && !isPowerUpActive) { 
+            spawnPowerUp(); 
+            isPowerUpActive = true;
+            resetPowerUpSpawnTimer(); 
+        }
+        
     }
 
     /*
@@ -113,12 +128,22 @@ public class GameWorld extends World {
         
     }
     
+    public void resetPowerUpSpawnTimer()
+    {
+        powerUpSpawnTimer = Greenfoot.getRandomNumber(600) + 600;
+    }
+    
+    public void powerUpDeactivated()
+    {
+        powerUpSpawnTimer = Greenfoot.getRandomNumber(600) + 600; 
+        isPowerUpActive = false;
+    }
+    
     public void removePowerUp() {
         if (currentPowerUp != null && currentPowerUp.getWorld() != null) {
             removeObject(currentPowerUp);
             currentPowerUp = null;
         }
     }
-    
 
 }

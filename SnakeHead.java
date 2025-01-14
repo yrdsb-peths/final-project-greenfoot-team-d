@@ -227,7 +227,7 @@ public class SnakeHead extends Snake {
     
     private void handleInvincibility() {
         if (isInvincible) {
-            System.out.println("Invincibility timer: " + invincibilityTimer);
+            //System.out.println("Invincibility timer: " + invincibilityTimer);
             invincibilityTimer--;
             if (invincibilityTimer <= 0) {
                 deactivateInvincibility();
