@@ -14,6 +14,8 @@ public class SettingScreen extends World
      */
     private World home;
     private String selectedColor;
+    private ColorButton selectedButton;
+    
     public SettingScreen(World home)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -23,17 +25,39 @@ public class SettingScreen extends World
         Label gameLabel = new Label("settings", 100);
         addObject(gameLabel, getWidth() / 2, 80);
          
-        addObject(new ColorButton("yellow", "images/png/snake_yellow_head_32.png",() -> setSelectedColor("yellow")), 150, 150);
-        addObject(new ColorButton("pink", "images/pinkHead.png",() -> setSelectedColor("pink")), 250, 150);
-        addObject(new ColorButton("green", "images/greenHead.png",() -> setSelectedColor("green")), 350, 150);
-        addObject(new ColorButton("red", "images/redHead.png",() -> setSelectedColor("red")), 450, 150);
+        addObject(createColorButton("yellow", "images/yellowHead.png", 50, 150), 100, 150);
+        addObject(createColorButton("pink", "images/pinkHead.png", 200, 150), 200, 150);
+        addObject(createColorButton("green", "images/greenHead.png", 300, 150), 300, 150);
+        addObject(createColorButton("red", "images/redHead.png", 400, 150), 400, 150);
+        addObject(createColorButton("purple", "images/purpleHead.png", 450, 150), 500, 150);
         // Add a button to go back to the home screen
         //addObject(new BackButton(), 300, 350);
+        
+        Label startLabel = new Label("Start", 25);
+         addObject(startLabel, getWidth() / 2 + 200, 200);
+         addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 500, 240);
+    }
+    
+    private ColorButton createColorButton(String color, String imagePath, int x, int y) {
+        return new ColorButton(color, imagePath, () -> setSelectedColor(color));
     }
     
     public void setSelectedColor(String color) {
-        selectedColor = color;
-        System.out.println("Selected color: " + color);
-        // Additional logic to handle color selection
+        // Deselect the previous button
+        if (selectedButton != null) {
+            selectedButton.hideCheckmark();
+        }
+
+        // Select the new button
+        selectedButton = (ColorButton) getObjects(ColorButton.class)
+            .stream()
+            .filter(button -> button.getColor().equals(color))
+            .findFirst()
+            .orElse(null);
+
+        if (selectedButton != null) {
+            selectedButton.showCheckmark();
+            selectedColor = color;
+        }
     }
 }
