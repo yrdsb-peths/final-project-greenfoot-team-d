@@ -13,6 +13,7 @@ public class SnakeHead extends Snake {
     private int foodEaten = 0;
     private static int level = 1;
     private int numObstacles = 0;
+    private String currentColor;
     
     private GreenfootSound eatSound = new GreenfootSound("sounds/apple.mp3");
     GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
@@ -25,6 +26,7 @@ public class SnakeHead extends Snake {
      */
     public SnakeHead(String color) {
         // Load and set image
+        this.currentColor = color;
         setColor(color);
     }
 
@@ -109,9 +111,13 @@ public class SnakeHead extends Snake {
     }
 
     private void grow() {
-        SnakeBody b = new SnakeBody();
+        SnakeBody b = new SnakeBody(getCurrentColor());
         getWorld().addObject(b,getX(),getY());
         body.add(b);
+    }
+    
+    private String getCurrentColor() {
+        return currentColor;
     }
 
     public void setSpeed(int speed) {
