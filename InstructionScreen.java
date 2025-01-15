@@ -22,13 +22,16 @@ public class InstructionScreen extends World
     private Label instructionLabel = new Label(allText[currentIndex], 50); 
     private Label next;
     Button nextButton = new Button(this::nextScreen);
+    private String selectedColor = "yellow";
     
-    public InstructionScreen(World home) 
+    public InstructionScreen(World home, String selectedColor) 
     {    
         super(600, 400, 1);
         setBackground("images/instructionBackground.png");
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.home = home;
+        this.selectedColor = selectedColor;
+        
         instructionLabel = new Label(allText[currentIndex], 40);
         addObject(instructionLabel, getWidth() / 2, getHeight() / 2 - 50);
         
@@ -44,7 +47,7 @@ public class InstructionScreen extends World
         
         Label startLabel = new Label("Start", 25);
         addObject(startLabel, 500, getHeight() / 2 + 30);
-        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 500, getHeight() / 2 + 65);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, selectedColor))), 500, getHeight() / 2 + 65);
     }
     
     private void nextScreen()

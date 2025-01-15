@@ -34,8 +34,8 @@ public class SettingScreen extends World
         //addObject(new BackButton(), 300, 350);
         
         Label startLabel = new Label("Start", 25);
-         addObject(startLabel, getWidth() / 2 + 200, 200);
-         addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 500, 240);
+        addObject(startLabel, getWidth() / 2 + 200, 200);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, selectedColor))), 500, 240);
     }
     
     private ColorButton createColorButton(String color, String imagePath, int x, int y) {
@@ -54,7 +54,7 @@ public class SettingScreen extends World
             .filter(button -> button.getColor().equals(color))
             .findFirst()
             .orElse(null);
-
+        
         if (selectedButton != null) {
             selectedButton.showCheckmark();
             selectedColor = color;

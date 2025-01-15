@@ -15,20 +15,19 @@ public class GameWorld extends World {
     Random random = new Random();
     Label levelLabel; 
     int level = SnakeHead.getLevel();; 
-    
+    private String selectedColor = "yellow";
 
     /*
      * Constructor 
      */
-    public GameWorld(World home) {
+    public GameWorld(World home, String selectedColor) {
         super(600, 400, 1);
         setBackground("images/grid2.png");
         this.home = home;
-        
+        this.selectedColor = selectedColor;
         // // Add music button 
         // this.musicButton = musicButton;
-        // addObject(musicButton, 950, 555);
-
+        // addObject(musicButton, 950, 555)
         createSnake();
         spawnFood();
         levelLabel = new Label("Level " + level, 32);
@@ -45,10 +44,10 @@ public class GameWorld extends World {
 
     /*
      * Create the snake 
-     */
-    public void createSnake() {
-        snakeHead = new SnakeHead();
-        addObject(snakeHead, getWidth()/2, getHeight()/2);
+     */private void createSnake() {
+        // Create the snake with the selected color
+        snakeHead = new SnakeHead(selectedColor);
+        addObject(snakeHead, getWidth() / 2, getHeight() / 2);
     }
 
     public void createObstacle() {
@@ -92,5 +91,13 @@ public class GameWorld extends World {
     public void increaseScore() {
         score++;
         scoreLabel.setValue("Score: " + score);
+    }
+    
+    public void setSelectedColor(String color) {
+        this.selectedColor = color;
+    }
+
+    public String getSelectedColor() {
+        return selectedColor;
     }
 }

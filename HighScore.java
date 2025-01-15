@@ -16,11 +16,12 @@ public class HighScore extends World
     private World previousScreen;
     
     private TitleScreen titleScreen;
+    private String selectedColor = "yellow";
     /**
      * Constructor for objects of class HighScore.
      * 
      */
-    public HighScore(TitleScreen titleScreen)
+    public HighScore(TitleScreen titleScreen, String selectedColor)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
@@ -65,7 +66,7 @@ public class HighScore extends World
         // addObject(new Button(()-> back()), 300, 350);
         Label playButtonLabel = new Label("Play", 20);
         addObject(playButtonLabel, 300, 385);
-        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 300, 350);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, selectedColor))), 300, 350);
     }
 
 }

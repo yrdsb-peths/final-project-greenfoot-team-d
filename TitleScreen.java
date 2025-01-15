@@ -17,15 +17,15 @@ public class TitleScreen extends World {
          //addObject(startbutton, getWidth() / 2, 120);
          Label startLabel = new Label("Start", 25);
          addObject(startLabel, getWidth() / 2 + 200, 135);
-         addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 500, 170);
+         addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, "yellow"))), 500, 170);
 
          Label instructionLabel = new Label("Instructions", 25);
          addObject(instructionLabel, getWidth() / 2 - 200, 135);
-         addObject(new Button(() -> Greenfoot.setWorld(new InstructionScreen(this))), 100, 170);
+         addObject(new Button(() -> Greenfoot.setWorld(new InstructionScreen(this, "yellow"))), 100, 170);
          
          Label scoreLabel = new Label("HighScore", 25);
          addObject(scoreLabel, getWidth()/2 - 200, 205);
-         addObject(new Button(() -> Greenfoot.setWorld(new HighScore(this))), 100, 240);
+         addObject(new Button(() -> Greenfoot.setWorld(new HighScore(this, "yellow"))), 100, 240);
     
          addObject(new Settings(() -> Greenfoot.setWorld(new SettingScreen(this))), 550, 50);
     //     musicButton = new MusicButton(this::changeVolume);

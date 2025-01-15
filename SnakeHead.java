@@ -23,9 +23,9 @@ public class SnakeHead extends Snake {
     /*
      * Constructor
      */
-    public SnakeHead() {
+    public SnakeHead(String color) {
         // Load and set image
-        setImage(yellowHead);
+        setColor(color);
     }
 
     public void act()
@@ -40,6 +40,25 @@ public class SnakeHead extends Snake {
         checkKeyInput();
         checkCollision();
 
+    }
+    
+    private void setColor(String color) {
+        switch (color) {
+            case "yellow":
+                setImage("images/png/snake_yellow_head_32.png");
+                break;
+            case "pink":
+                setImage("images/pinkHead.png");
+                break;
+            case "green":
+                setImage("images/greenHead.png");
+                break;
+            case "red":
+                setImage("images/redHead.png");
+                break;
+            default:
+                setImage("images/png/snake_yellow_head_32.png"); // Default image
+        }
     }
 
     /*
