@@ -19,7 +19,7 @@ public class EndScreen extends World {
         addObject(homeButton, 300, 250);
 
         // Return to game world button
-        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), getWidth() / 2, 170);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, "yellow"))), getWidth() / 2, 170);
         
         // Update high score
         if (GameWorld.getScore() > GameWorld.getHighScore()) {
