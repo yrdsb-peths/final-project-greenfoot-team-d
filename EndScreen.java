@@ -1,37 +1,34 @@
 import greenfoot.*;
 
 public class EndScreen extends World {
+    private GreenfootSound gameOverSound;
     
     public EndScreen() 
-
     {
         super(600, 400, 1);
         setBackground("images/instructionBackground.png");
     
-        Label gameOverLabel = new Label("Game Over!", 40);
-        addObject(gameOverLabel, 300, 150);
+        // Play sound
+        gameOverSound = new GreenfootSound("gameover.mp3");
+        gameOverSound.play();
 
+        addLabels();
+
+        // Home button 
         Button homeButton = new Button(this::backToHome);
-        addObject(homeButton, 300, 200);
+        addObject(homeButton, 300, 250);
 
+        // Return to game world button
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), getWidth() / 2, 170);
+        
+        // Update high score
+        if (GameWorld.getScore() > GameWorld.getHighScore()) {
+            GameWorld.setHighScore(GameWorld.getScore());
+        }
+        
+        // Reset game
+        GameWorld.resetScore();
         SnakeHead.resetLevel();
-        
-        // // Update high score
-        // if (GameWorld.getScore() > GameWorld.getHighScore()) {
-        //     GameWorld.setHighScore(GameWorld.getScore());
-        // }
-        
-        // // Score label
-        // Label score = new Label("Score: " + GameWorld.getScore(), 40);
-        // addObject(score, 70, 20);
-
-        // // High score label
-        // Label highScoreLabel = new Label("Highscore: " + GameWorld.getHighScore(), 40);
-        // addObject(highScoreLabel, 110, 50);  
-
-        // Button menuButton = new BackButton(this::backToMenu);
-        // addObject(menuButton, 550, 350);
-
     }
 
     
@@ -40,5 +37,26 @@ public class EndScreen extends World {
         Greenfoot.setWorld(new TitleScreen());
     }
 
+    /*
+     * Add Labels
+     */
+    private void addLabels(){
+
+        // Gameover Label
+        Label gameOverLabel = new Label("Game Over!", 40);
+        addObject(gameOverLabel, 300, 100);
+        
+        // Home Label
+        Label playAgainLabel = new Label("Back to Home", 20);
+        addObject(playAgainLabel, 300, 280);
+        
+        // Restart label
+        Label restartLabel = new Label("Restart", 20);
+        addObject(restartLabel, getWidth() / 2, 200);
+
+        // Score label
+        Label score = new Label("Score: " + GameWorld.getScore(), 40);
+        addObject(score, 70, 20);
+    }
 
 }
