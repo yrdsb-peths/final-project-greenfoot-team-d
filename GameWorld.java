@@ -12,6 +12,7 @@ public class GameWorld extends World {
     private PowerUp currentPowerUp;
     private int powerUpSpawnTimer = 0;
     private boolean isPowerUpActive = false;
+    private Label powerUpTimeLabel;
 
     // private Button musicButton;
     private World home;
@@ -43,7 +44,11 @@ public class GameWorld extends World {
         addObject(scoreLabel, 55, 55); 
         // initiatlize the power up spawn between each spawn
         resetPowerUpSpawnTimer();
-        powerUpSpawnTimer = 600;
+        powerUpSpawnTimer = 300;
+        
+        powerUpTimeLabel = new Label("", 32); 
+        addObject(powerUpTimeLabel, getWidth() - 55, 20);
+        resetPowerUpSpawnTimer();
     }
 
     public void act(){
@@ -130,7 +135,7 @@ public class GameWorld extends World {
     
     public void resetPowerUpSpawnTimer()
     {
-        powerUpSpawnTimer = Greenfoot.getRandomNumber(600) + 600;
+        powerUpSpawnTimer = Greenfoot.getRandomNumber(300) + 300;
     }
     
     public void powerUpDeactivated()
@@ -145,5 +150,8 @@ public class GameWorld extends World {
             currentPowerUp = null;
         }
     }
-
+    
+    public void updatePowerUpTimeLabel(int remainingTime) {
+        powerUpTimeLabel.setValue("Power-up: " + remainingTime + "s");
+    }
 }

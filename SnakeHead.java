@@ -79,6 +79,7 @@ public class SnakeHead extends Snake {
     }
     
     private void moveSnake() {
+
         // Save the previous position of the head
         int previousX = getX();
         int previousY = getY();
@@ -89,11 +90,21 @@ public class SnakeHead extends Snake {
         // Move the snake head
         setLocation(newX, newY);
         if(newX > 585 || newX < 15 || newY > 385 || newY < 17) {
+            
+            if (isInvincible) {
+                // reverse direction
+                dx = -dx; 
+                dy = -dy; 
+                newX = previousX + dx; 
+                newY = previousY + dy;
+                setLocation(newX, newY);
+            }
             //gameover screen;
             Greenfoot.setWorld(new EndScreen());
             return;
         }
 
+        setLocation(newX, newY);
         // Move the body
         for(SnakeBody b : body) {
             int tempX = b.getX();
@@ -164,9 +175,9 @@ public class SnakeHead extends Snake {
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
         GameWorld world = (GameWorld) getWorld();
         
+        // food collision
         if (actor != null) {
             Food food = (Food) actor;
-
             // play sound 
             eatSound.play();
             
@@ -176,29 +187,30 @@ public class SnakeHead extends Snake {
             foodEaten++;
             changeLevel();
             world.increaseScore();
-            if (!isInvincible) {
-                Obstacle obstacle = (Obstacle) getOneIntersectingObject(Obstacle.class);
-                if (obstacle != null) {
-                    Greenfoot.setWorld(new EndScreen());
-                }
-            }
-
+            
         }
         
-        
-        Actor powerUp = getOneIntersectingObject(PowerUp.class);
-        if (powerUp != null) {
-            activateInvincibility(350);
-            getWorld().removeObject(powerUp);
-        }
-        
-        if(!isInvincible){
-            Actor obstacle = getOneIntersectingObject(Obstacle.class);
-            if (obstacle != null) {
+        // obstacle collission
+        Actor obstacle = getOneIntersectingObject(Obstacle.class); 
+        if (obstacle != null) { 
+            
+            if (isInvincible){
+                // reverse direction
+                dx = -dx; 
+                dy = -dy;
+            }else 
+            {
                 Greenfoot.setWorld(new EndScreen()); 
                 return;
             }
         }
+        
+        Actor powerUp = getOneIntersectingObject(PowerUp.class);
+        if (powerUp != null) {
+            activateInvincibility(360);
+            getWorld().removeObject(powerUp);
+        }
+
         
         Actor food = getOneIntersectingObject(Food.class);
         if (food != null) {
