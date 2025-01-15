@@ -44,11 +44,10 @@ public class GameWorld extends World {
         addObject(scoreLabel, 55, 55); 
         // initiatlize the power up spawn between each spawn
         resetPowerUpSpawnTimer();
-        powerUpSpawnTimer = 300;
+        powerUpSpawnTimer = 250;
         
         powerUpTimeLabel = new Label("", 32); 
-        addObject(powerUpTimeLabel, getWidth() - 55, 20);
-        resetPowerUpSpawnTimer();
+        addObject(powerUpTimeLabel, getWidth() - 35, 20);
     }
 
     public void act(){
@@ -59,7 +58,6 @@ public class GameWorld extends World {
         if (!isPowerUpActive && powerUpSpawnTimer > 0) {
             powerUpSpawnTimer--; 
         }
-        
         
         if (powerUpSpawnTimer <= 0 && !isPowerUpActive) { 
             spawnPowerUp(); 
@@ -152,6 +150,6 @@ public class GameWorld extends World {
     }
     
     public void updatePowerUpTimeLabel(int remainingTime) {
-        powerUpTimeLabel.setValue("Power-up: " + remainingTime + "s");
+        powerUpTimeLabel.setValue(remainingTime);
     }
 }

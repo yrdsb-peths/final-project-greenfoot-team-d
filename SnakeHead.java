@@ -247,6 +247,12 @@ public class SnakeHead extends Snake {
         if (isInvincible) {
             //System.out.println("Invincibility timer: " + invincibilityTimer);
             invincibilityTimer--;
+            
+            // power up label count down
+            int remainingTime = invincibilityTimer / 60;
+            GameWorld world = (GameWorld) getWorld();
+            world.updatePowerUpTimeLabel(remainingTime);
+            
             if (invincibilityTimer <= 0) {
                 deactivateInvincibility();
             }
