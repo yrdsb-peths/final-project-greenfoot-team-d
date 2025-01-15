@@ -58,6 +58,9 @@ public class SnakeHead extends Snake {
             case "red":
                 setImage("images/redHead.png");
                 break;
+            case "purple":
+                setImage("images/purpleHead.png");
+                break;
             default:
                 setImage("images/png/snake_yellow_head_32.png"); // Default image
         }
