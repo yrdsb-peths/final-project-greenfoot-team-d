@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Random;
+
 import greenfoot.*;
 
 public class SnakeHead extends Snake {
@@ -12,18 +13,21 @@ public class SnakeHead extends Snake {
     private int foodEaten = 0;
     private static int level = 1;
     private int numObstacles = 0;
+    private String currentColor;
     
-    // Sounds 
     private GreenfootSound eatSound = new GreenfootSound("sounds/apple.mp3");
-    private GreenfootSound levelUpSound = new GreenfootSound("sounds/levelUp.mp3");
-
+    GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
+    GreenfootImage pinkHead = new GreenfootImage("images/pinkHead.png");
+    GreenfootImage orangeHead = new GreenfootImage("images/orangeHead.png");
+    GreenfootImage greenHead = new GreenfootImage("images/greenHead.png");
+    GreenfootImage redHead = new GreenfootImage("images/redHead.png");
     /*
      * Constructor
      */
-    public SnakeHead() {
+    public SnakeHead(String color) {
         // Load and set image
-        GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-        setImage(yellowHead);
+        this.currentColor = color;
+        setColor(color);
     }
 
     public void act()
@@ -38,6 +42,25 @@ public class SnakeHead extends Snake {
         checkKeyInput();
         checkCollision();
 
+    }
+    
+    private void setColor(String color) {
+        switch (color) {
+            case "yellow":
+                setImage("images/png/snake_yellow_head_32.png");
+                break;
+            case "pink":
+                setImage("images/pinkHead.png");
+                break;
+            case "green":
+                setImage("images/greenHead.png");
+                break;
+            case "red":
+                setImage("images/redHead.png");
+                break;
+            default:
+                setImage("images/png/snake_yellow_head_32.png"); // Default image
+        }
     }
 
     /*
@@ -87,41 +110,37 @@ public class SnakeHead extends Snake {
 
     }
 
-    // Create and add body to the linkedList
     private void grow() {
-        SnakeBody b = new SnakeBody();
+        SnakeBody b = new SnakeBody(getCurrentColor());
         getWorld().addObject(b,getX(),getY());
         body.add(b);
     }
+    
+    private String getCurrentColor() {
+        return currentColor;
+    }
 
-    // Sets the speed
     public void setSpeed(int speed) {
         moveDelay = speed;
     }
 
-    // Returns the amount of food eaten 
     public int getFoodEaten() {
         return foodEaten;
     }
 
-    // Resets level 
     public static void resetLevel(){
         level = 1;
     }
 
-    // Gets current level 
     public static int getLevel() {
         return level;
     }
 
-    // Changes to different level 
     public void changeLevel() {
         GameWorld world = (GameWorld) getWorld();
 
-        // level up every 5 food eaten 
         if(foodEaten%5 == 0) {
             level++; 
-            levelUpSound.play();
         }
         
         if(level % 2 == 0) {
@@ -131,7 +150,6 @@ public class SnakeHead extends Snake {
                 setSpeed(moveDelay);
             }
             
-            // Create 9 obstacles max 
             if(numObstacles < 10) {
                 world.createObstacle();
                 numObstacles++;
@@ -139,7 +157,6 @@ public class SnakeHead extends Snake {
             
         }
 
-        // Adding reverse movement when level is greater or equal to 5 
         if(level >= 5) {
             Random random = new Random();
             Boolean bool = random.nextBoolean();
@@ -150,14 +167,12 @@ public class SnakeHead extends Snake {
         }
     }
 
-    // Checks collision 
     public void checkCollision() {
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
-        
         if (actor != null) {
             Food food = (Food) actor;
             GameWorld world = (GameWorld) getWorld();
-            // Play sound 
+            // play sound 
             eatSound.play();
             
             grow();
@@ -170,7 +185,24 @@ public class SnakeHead extends Snake {
         }
     }
 
-    // Reverses snake movement 
+    // private void reverseSnake() {
+        
+    //     int j = body.size()-1;
+
+    //     for(int i = 0; i < j; i++, j--) {
+    //         SnakeBody temp = body.get(i);
+    //         body.set(i,body.get(j));
+    //         body.set(j,temp);
+    //     }
+
+    //     int newX = body.get(body.size()-1).getX();
+    //     int newY = body.get(body.size()-1).getY();
+
+    //     body.get(body.size()-1).setLocation(getX(),getY());
+    //     setLocation(newX,newY);
+        
+    // }
+
     private void reverseSnake() {
         int newX = body.get(body.size()-1).getX();
         int newY = body.get(body.size()-1).getY();
