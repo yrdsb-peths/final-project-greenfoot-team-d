@@ -98,10 +98,13 @@ public class SnakeHead extends Snake {
                 newX = previousX + dx; 
                 newY = previousY + dy;
                 setLocation(newX, newY);
+            }else 
+            {
+                //gameover screen;
+                Greenfoot.setWorld(new EndScreen());
+                return;
             }
-            //gameover screen;
-            Greenfoot.setWorld(new EndScreen());
-            return;
+
         }
 
         setLocation(newX, newY);
@@ -172,24 +175,9 @@ public class SnakeHead extends Snake {
     }
 
     public void checkCollision() {
-        Actor actor = getOneIntersectingObject(Food.class); // Might be null
+        
         GameWorld world = (GameWorld) getWorld();
-        
-        // food collision
-        if (actor != null) {
-            Food food = (Food) actor;
-            // play sound 
-            eatSound.play();
-            
-            grow();
-            world.removeObject(food);
-            world.spawnFood();
-            foodEaten++;
-            changeLevel();
-            world.increaseScore();
-            
-        }
-        
+
         // obstacle collission
         Actor obstacle = getOneIntersectingObject(Obstacle.class); 
         if (obstacle != null) { 
@@ -203,6 +191,22 @@ public class SnakeHead extends Snake {
                 Greenfoot.setWorld(new EndScreen()); 
                 return;
             }
+        }
+        
+        // food collision
+        Actor actor = getOneIntersectingObject(Food.class); // Might be null
+        if (actor != null) {
+            Food food = (Food) actor;
+            // play sound 
+            eatSound.play();
+            
+            grow();
+            world.removeObject(food);
+            world.spawnFood();
+            foodEaten++;
+            changeLevel();
+            world.increaseScore();
+            
         }
         
         Actor powerUp = getOneIntersectingObject(PowerUp.class);
@@ -220,6 +224,8 @@ public class SnakeHead extends Snake {
             world.increaseScore();
             world.spawnFood();
         }
+        
+        
     }
     
     
