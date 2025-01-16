@@ -9,7 +9,7 @@ public class InstructionScreen extends World
         "The snake will grow depending \n on how much food you eat",
         "The difficulty of the game will \n get harder as the levels increase",
         "Use Arrow Keys to control \n the snake's movement,",
-        "Collect power-ups to become \n invincible for 8 seconds. While \n invincible, you can bounce off \n walls and obstacles without \n dying."
+        "Collect power-ups to become \n invisible for 8 seconds. While \n invisible, you can bounce off \n walls and obstacles without \n dying."
         };
     private int currentIndex = 0;
     private Label instructionLabel = new Label(allText[currentIndex], 40); 
@@ -24,14 +24,6 @@ public class InstructionScreen extends World
         setBackground("images/instructionBackground.png");
 
         this.home = home;
-        next = new Label("Next", 25);
-        addObject(next, 500, 35);
-        addObject(nextButton, 500, 70);
-        
-        Label prevLabel = new Label("Back", 25);
-        addObject(prevLabel, 100, 35);
-        addObject(new Button(this::prevScreen), 100, 70);
-        
         this.selectedColor = selectedColor;
 
         addButtons();
