@@ -10,6 +10,7 @@ public class SnakeHead extends Snake {
     private LinkedList<SnakeBody> body = new LinkedList<>();
     private int moveDelay = 8; // Speed control
     private int moveCounter = 0;
+    
     private int foodEaten = 0;
     private static int level = 1;
     private int numObstacles = 0;
@@ -21,9 +22,7 @@ public class SnakeHead extends Snake {
     GreenfootImage orangeHead = new GreenfootImage("images/orangeHead.png");
     GreenfootImage greenHead = new GreenfootImage("images/greenHead.png");
     GreenfootImage redHead = new GreenfootImage("images/redHead.png");
-    /*
-     * Constructor
-     */
+    
     public SnakeHead(String color) {
         // Load and set image
         this.currentColor = color;
@@ -44,31 +43,35 @@ public class SnakeHead extends Snake {
 
     }
     
+    // Sets the color of the head 
     private void setColor(String color) {
         switch (color) {
             case "yellow":
                 setImage("images/png/snake_yellow_head_32.png");
                 break;
+
             case "pink":
                 setImage("images/pinkHead.png");
                 break;
+
             case "green":
                 setImage("images/greenHead.png");
                 break;
+
             case "red":
                 setImage("images/redHead.png");
                 break;
+
             case "purple":
                 setImage("images/purpleHead.png");
                 break;
+
             default:
                 setImage("images/png/snake_yellow_head_32.png"); // Default image
         }
     }
 
-    /*
-     * Checks user keys
-     */
+    // Checks user key 
     private void checkKeyInput() {
         if (Greenfoot.isKeyDown("up")) {
             dx = 0;
@@ -85,6 +88,7 @@ public class SnakeHead extends Snake {
         }
     }
 
+    // Moves the snake 
     private void moveSnake() {
         // Save the previous position of the head
         int previousX = getX();
@@ -97,7 +101,8 @@ public class SnakeHead extends Snake {
         setLocation(newX, newY);
         if(newX > 585 || newX < 15 || newY > 385 || newY < 17) {
             //gameover screen;
-            Greenfoot.setWorld(new EndScreen());
+            GameWorld world = (GameWorld) getWorld();
+            Greenfoot.setWorld(new EndScreen(world.getSelectedColor()));
             return;
         }
 
@@ -113,32 +118,40 @@ public class SnakeHead extends Snake {
 
     }
 
+    // Add body to linked list 
     private void grow() {
         SnakeBody b = new SnakeBody(getCurrentColor());
         getWorld().addObject(b,getX(),getY());
         body.add(b);
     }
     
+
+    // Returns current color 
     private String getCurrentColor() {
         return currentColor;
     }
 
+    // Sets the speed
     public void setSpeed(int speed) {
         moveDelay = speed;
     }
 
+    // Get the number of food eaten
     public int getFoodEaten() {
         return foodEaten;
     }
 
+    // Resets level
     public static void resetLevel(){
         level = 1;
     }
 
+    // Get level
     public static int getLevel() {
         return level;
     }
 
+    // Changes the level 
     public void changeLevel() {
         GameWorld world = (GameWorld) getWorld();
 
@@ -170,6 +183,7 @@ public class SnakeHead extends Snake {
         }
     }
 
+    // Checks collision with food 
     public void checkCollision() {
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
         if (actor != null) {
@@ -188,24 +202,7 @@ public class SnakeHead extends Snake {
         }
     }
 
-    // private void reverseSnake() {
-        
-    //     int j = body.size()-1;
-
-    //     for(int i = 0; i < j; i++, j--) {
-    //         SnakeBody temp = body.get(i);
-    //         body.set(i,body.get(j));
-    //         body.set(j,temp);
-    //     }
-
-    //     int newX = body.get(body.size()-1).getX();
-    //     int newY = body.get(body.size()-1).getY();
-
-    //     body.get(body.size()-1).setLocation(getX(),getY());
-    //     setLocation(newX,newY);
-        
-    // }
-
+    // Reveres the snake movement 
     private void reverseSnake() {
         int newX = body.get(body.size()-1).getX();
         int newY = body.get(body.size()-1).getY();

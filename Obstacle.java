@@ -14,10 +14,11 @@ public class Obstacle extends Actor{
 
     // Check collision with snake 
     private void checkCollision() {
+        GameWorld world = (GameWorld) getWorld();
         Actor actor = getOneIntersectingObject(Snake.class); // Might be null
         if (actor != null) {
             // game over screen
-            Greenfoot.setWorld(new EndScreen());
+            Greenfoot.setWorld(new EndScreen(world.getSelectedColor()));
         }
     }
 
