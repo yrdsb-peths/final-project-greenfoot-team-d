@@ -178,6 +178,11 @@ public class SnakeHead extends Snake {
         
         GameWorld world = (GameWorld) getWorld();
 
+        int previousX = getX();
+        int previousY = getY();
+        int newX = previousX + dx;
+        int newY = previousY + dy;
+        
         // obstacle collission
         Actor obstacle = getOneIntersectingObject(Obstacle.class); 
         if (obstacle != null) { 
@@ -186,12 +191,16 @@ public class SnakeHead extends Snake {
                 // reverse direction
                 dx = -dx; 
                 dy = -dy;
+                newX = previousX + dx; 
+                newY = previousY + dy;
+                setLocation(newX, newY);
             }else 
             {
                 Greenfoot.setWorld(new EndScreen()); 
                 return;
             }
         }
+        //setLocation(newX, newY);
         
         // food collision
         Actor actor = getOneIntersectingObject(Food.class); // Might be null
@@ -241,6 +250,10 @@ public class SnakeHead extends Snake {
         invincibilityTimer = 0;
         GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
         setImage(yellowHead);
+        // remove countdown label 
+        GameWorld world = (GameWorld) getWorld(); 
+        world.updatePowerUpTimeLabel(0);
+        
     }
     
     private void handleInvincibility() {
