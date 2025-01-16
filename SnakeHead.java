@@ -143,9 +143,9 @@ public class SnakeHead extends Snake {
             }
 
             //gameover screen;
-            GameWorld world = (GameWorld) getWorld();
-            Greenfoot.setWorld(new EndScreen(world.getSelectedColor()));
-            return;
+            // GameWorld world = (GameWorld) getWorld();
+            // Greenfoot.setWorld(new EndScreen(world.getSelectedColor()));
+            // return;
         }
 
         setLocation(newX, newY);
