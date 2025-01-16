@@ -3,19 +3,39 @@ import greenfoot.*;
 public class EndScreen extends World {
     private GreenfootSound gameOverSound;
     
-    public EndScreen() 
+    public EndScreen(String color) 
     {
         super(600, 400, 1);
         setBackground("images/instructionBackground.png");
     
-        Label gameOverLabel = new Label("Game Over!", 40);
-        addObject(gameOverLabel, 300, 100);
+        // Play sound
         gameOverSound = new GreenfootSound("gameover.mp3");
         gameOverSound.play();
 
-        Button homeButton = new Button(this::backToHome);
-        addObject(homeButton, 300, 250);
+        addLabels();
 
+        // Return to game world button
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, color))), getWidth() / 2, 170);
+        addObject(new Button(() -> Greenfoot.setWorld(new TitleScreen())), 300, 250);
+        
+        // Update high score
+        if (GameWorld.getScore() > GameWorld.getHighScore()) {
+            GameWorld.setHighScore(GameWorld.getScore());
+        }
+        
+        // Reset game
+        GameWorld.resetScore();
+        SnakeHead.resetLevel();
+    }
+
+    // Add Labels
+    private void addLabels(){
+
+        // Gameover Label
+        Label gameOverLabel = new Label("Game Over!", 40);
+        addObject(gameOverLabel, 300, 100);
+        
+        // Home Label
         Label playAgainLabel = new Label("Back to Home", 20);
         addObject(playAgainLabel, 300, 280);
         
@@ -23,27 +43,9 @@ public class EndScreen extends World {
         Label restartLabel = new Label("Restart", 20);
         addObject(restartLabel, getWidth() / 2, 200);
 
-        // Return to game world
-        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), getWidth() / 2, 170);
-        
-        // Update high score
-        if (GameWorld.getScore() > GameWorld.getHighScore()) {
-            GameWorld.setHighScore(GameWorld.getScore());
-        }
-        
         // Score label
         Label score = new Label("Score: " + GameWorld.getScore(), 40);
         addObject(score, 70, 20);
-
-        GameWorld.resetScore();
-        SnakeHead.resetLevel();
     }
-
-    
-    // Return back to title screen
-    public void backToHome() {
-        Greenfoot.setWorld(new TitleScreen());
-    }
-
 
 }

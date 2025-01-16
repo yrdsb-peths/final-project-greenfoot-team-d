@@ -14,19 +14,20 @@ public class GameWorld extends World {
     private boolean isPowerUpActive = false;
     private Label powerUpTimeLabel;
 
-    // private Button musicButton;
     private World home;
     List<int[]> snake = new ArrayList<>();
     Snake snakeHead;
+    private String selectedColor = "yellow";
+
     Random random = new Random();
     Label levelLabel; 
-    int level = SnakeHead.getLevel(); 
-    
+    int level = SnakeHead.getLevel();
+
 
     /*
      * Constructor 
      */
-    public GameWorld(World home) {
+    public GameWorld(World home, String selectedColor) {
         super(600, 400, 1);
         setBackground("images/grid2.png");
         this.home = home;
@@ -35,11 +36,15 @@ public class GameWorld extends World {
         // // Add music button 
         // this.musicButton = musicButton;
         // addObject(musicButton, 950, 555);
+        this.selectedColor = selectedColor;
 
         createSnake();
         spawnFood();
+
+        // Labels 
         levelLabel = new Label("Level " + level, 32);
         addObject(levelLabel, 50, 20);
+
         scoreLabel = new Label("Score: " + score, 32);
         addObject(scoreLabel, 55, 55); 
         // initiatlize the power up spawn between each spawn
@@ -51,6 +56,7 @@ public class GameWorld extends World {
     }
 
     public void act(){
+        // Sets the paint order of classes 
         setPaintOrder(Label.class,Food.class, Obstacle.class, SnakeHead.class, SnakeBody.class);
         level = SnakeHead.getLevel();
         levelLabel.setValue("Level " + level);
@@ -67,14 +73,14 @@ public class GameWorld extends World {
         
     }
 
-    /*
-     * Create the snake 
-     */
-    public void createSnake() {
-        snakeHead = new SnakeHead();
-        addObject(snakeHead, getWidth()/2, getHeight()/2);
+    // Creates the snake 
+    private void createSnake() {
+        // Create the snake with the selected color
+        snakeHead = new SnakeHead(selectedColor);
+        addObject(snakeHead, getWidth() / 2, getHeight() / 2);
     }
 
+    // Creates obstacle 
     public void createObstacle() {
         Obstacle obstacle = new Obstacle();
         int x = random.nextInt(30,570);
@@ -83,6 +89,7 @@ public class GameWorld extends World {
         obstacle.checkPosition();
     }
 
+    // Spawns food
     public void spawnFood() {
         Food food = new Apple();
         int x = random.nextInt(15,585);
@@ -106,13 +113,12 @@ public class GameWorld extends World {
         score = 0;
     }
 
-    /*
-     * Sets the high score
-     */
+    // Sets highscore 
     public static void setHighScore(int theHighScore) {
         highScore = theHighScore;
     }
     
+    // Increases the score 
     public void increaseScore() {
         score++;
         scoreLabel.setValue("Score: " + score);
@@ -156,5 +162,13 @@ public class GameWorld extends World {
             // clear the label
             powerUpTimeLabel.setValue("");  
         }
+    // Sets the selected color 
+    public void setSelectedColor(String color) {
+        this.selectedColor = color;
+    }
+
+    // Get selected color 
+    public String getSelectedColor() {
+        return selectedColor;
     }
 }
