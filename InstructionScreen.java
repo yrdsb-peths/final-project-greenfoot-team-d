@@ -24,10 +24,6 @@ public class InstructionScreen extends World
         setBackground("images/instructionBackground.png");
 
         this.home = home;
-        //instructionLabel = new Label(allText[currentIndex], 40);
-        //addObject(instructionLabel, getWidth() / 2, getHeight() / 2 - 20);
-        //addObject(instructionLabel, 250, 200);
-        
         next = new Label("Next", 25);
         addObject(next, 500, 35);
         addObject(nextButton, 500, 70);
@@ -36,9 +32,6 @@ public class InstructionScreen extends World
         addObject(prevLabel, 100, 35);
         addObject(new Button(this::prevScreen), 100, 70);
         
-        Label startLabel = new Label("Start", 25);
-        addObject(startLabel, 500, getHeight() / 2 + 65);
-        //addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, "yellow"))), 500, getHeight() / 2 + 100);
         this.selectedColor = selectedColor;
 
         addButtons();
@@ -57,9 +50,6 @@ public class InstructionScreen extends World
     private void addLabels() {
         instructionLabel = new Label(allText[currentIndex], 40);
         addObject(instructionLabel, getWidth() / 2, getHeight() / 2 - 50);
-
-        next = new Label("Next", 25);
-        addObject(next, 500, 35);
 
         Label prevLabel = new Label("Back", 25);
         addObject(prevLabel, 100, 35);
