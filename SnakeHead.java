@@ -23,10 +23,6 @@ public class SnakeHead extends Snake {
     private boolean isInvisible = false;
     private int invisibilityTimer = 0;
 
-    // Constructor
-    public SnakeHead() {
-    
-    }
     public SnakeHead(String color) {
         // Load and set image
         this.currentColor = color;
@@ -271,16 +267,15 @@ public class SnakeHead extends Snake {
     private void activateInvisibility(int duration) {
         isInvisible = true;
         invisibilityTimer = duration; 
-        GreenfootImage invincibleImage = new GreenfootImage("images/png/snake_green_head_32.png");
-        setImage(invincibleImage);
+        GreenfootImage invisibleImage = new GreenfootImage("images/png/snake_green_head_32.png");
+        setImage(invisibleImage);
     }
     
     // Deactivites invisibility 
     private void deactivateInvisibility() {
         isInvisible = false;
         invisibilityTimer = 0;
-        GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-        setImage(yellowHead);
+        setColor(currentColor);
         // remove countdown label 
         GameWorld world = (GameWorld) getWorld(); 
         world.updatePowerUpTimeLabel(0);
