@@ -7,6 +7,12 @@ public class GameWorld extends World {
     private Label scoreLabel;
     private static int score = 0;
     private static int highScore = 0;
+    
+    // power up
+    private PowerUp currentPowerUp;
+    private int powerUpSpawnTimer = 0;
+    private boolean isPowerUpActive = false;
+    private Label powerUpTimeLabel;
 
     private World home;
     List<int[]> snake = new ArrayList<>();
@@ -25,6 +31,11 @@ public class GameWorld extends World {
         super(600, 400, 1);
         setBackground("images/grid2.png");
         this.home = home;
+        
+    
+        // // Add music button 
+        // this.musicButton = musicButton;
+        // addObject(musicButton, 950, 555);
         this.selectedColor = selectedColor;
 
         createSnake();
@@ -36,6 +47,12 @@ public class GameWorld extends World {
 
         scoreLabel = new Label("Score: " + score, 32);
         addObject(scoreLabel, 55, 55); 
+        // initiatlize the power up spawn between each spawn
+        resetPowerUpSpawnTimer();
+        powerUpSpawnTimer = 100;
+        
+        powerUpTimeLabel = new Label("", 32); 
+        addObject(powerUpTimeLabel, getWidth() - 35, 20);
     }
 
     public void act(){
@@ -43,6 +60,17 @@ public class GameWorld extends World {
         setPaintOrder(Label.class,Food.class, Obstacle.class, SnakeHead.class, SnakeBody.class);
         level = SnakeHead.getLevel();
         levelLabel.setValue("Level " + level);
+        
+        if (!isPowerUpActive && powerUpSpawnTimer > 0) {
+            powerUpSpawnTimer--; 
+        }
+        
+        if (powerUpSpawnTimer <= 0 && !isPowerUpActive) { 
+            spawnPowerUp(); 
+            isPowerUpActive = true;
+            resetPowerUpSpawnTimer(); 
+        }
+        
     }
 
     // Creates the snake 
@@ -96,6 +124,44 @@ public class GameWorld extends World {
         scoreLabel.setValue("Score: " + score);
     }
     
+    public void spawnPowerUp() {
+        currentPowerUp = new PowerUp();
+        
+        // spawn random x and y position
+        int x = Greenfoot.getRandomNumber(585) + 15; 
+        int y = Greenfoot.getRandomNumber(385) + 15; 
+        if (getObjects(PowerUp.class).isEmpty())
+        {
+            addObject(currentPowerUp, x, y); 
+        }
+        
+    }
+    
+    public void resetPowerUpSpawnTimer()
+    {
+        powerUpSpawnTimer = Greenfoot.getRandomNumber(200) + 300;
+    }
+    
+    public void powerUpDeactivated()
+    {
+        powerUpSpawnTimer = Greenfoot.getRandomNumber(10) + 300; 
+        isPowerUpActive = false;
+    }
+    
+    public void removePowerUp() {
+        if (currentPowerUp != null && currentPowerUp.getWorld() != null) {
+            removeObject(currentPowerUp);
+            currentPowerUp = null;
+        }
+    }
+    
+    public void updatePowerUpTimeLabel(int remainingTime) {
+        if (remainingTime > 0) { 
+            powerUpTimeLabel.setValue(remainingTime); 
+        }else { 
+            // clear the label
+            powerUpTimeLabel.setValue("");  
+        }
     // Sets the selected color 
     public void setSelectedColor(String color) {
         this.selectedColor = color;
