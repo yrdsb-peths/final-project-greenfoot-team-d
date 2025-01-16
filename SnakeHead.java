@@ -220,7 +220,7 @@ public class SnakeHead extends Snake {
         
         Actor powerUp = getOneIntersectingObject(PowerUp.class);
         if (powerUp != null) {
-            activateInvincibility(360);
+            activateInvincibility(480);
             getWorld().removeObject(powerUp);
         }
 
