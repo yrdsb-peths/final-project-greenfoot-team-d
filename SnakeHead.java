@@ -253,7 +253,7 @@ public class SnakeHead extends Snake {
         // remove countdown label 
         GameWorld world = (GameWorld) getWorld(); 
         world.updatePowerUpTimeLabel(0);
-        
+        world.powerUpDeactivated();
     }
     
     private void handleInvincibility() {
