@@ -43,6 +43,9 @@ public class InstructionScreen extends World
         instructionLabel = new Label(allText[currentIndex], 40);
         addObject(instructionLabel, getWidth() / 2, getHeight() / 2 - 20);
 
+        next = new Label("Next", 25);
+        addObject(next, 500, 35);
+        
         Label prevLabel = new Label("Back", 25);
         addObject(prevLabel, 100, 35);
 
