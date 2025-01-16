@@ -3,7 +3,7 @@ import greenfoot.*;
 public class EndScreen extends World {
     private GreenfootSound gameOverSound;
     
-    public EndScreen() 
+    public EndScreen(String color) 
     {
         super(600, 400, 1);
         setBackground("images/instructionBackground.png");
@@ -14,12 +14,9 @@ public class EndScreen extends World {
 
         addLabels();
 
-        // Home button 
-        Button homeButton = new Button(this::backToHome);
-        addObject(homeButton, 300, 250);
-
         // Return to game world button
-        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, "yellow"))), getWidth() / 2, 170);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, color))), getWidth() / 2, 170);
+        addObject(new Button(() -> Greenfoot.setWorld(new TitleScreen())), 300, 250);
         
         // Update high score
         if (GameWorld.getScore() > GameWorld.getHighScore()) {
@@ -31,15 +28,7 @@ public class EndScreen extends World {
         SnakeHead.resetLevel();
     }
 
-    
-    // Return back to title screen
-    public void backToHome() {
-        Greenfoot.setWorld(new TitleScreen());
-    }
-
-    /*
-     * Add Labels
-     */
+    // Add Labels
     private void addLabels(){
 
         // Gameover Label
