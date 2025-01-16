@@ -22,17 +22,17 @@ public class SnakeHead extends Snake {
     
     private boolean isInvincible = false;
     private int invincibilityTimer = 0;
-
     /*
      * Constructor
      */
     public SnakeHead() {
-    GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-    GreenfootImage pinkHead = new GreenfootImage("images/pinkHead.png");
-    GreenfootImage orangeHead = new GreenfootImage("images/orangeHead.png");
-    GreenfootImage greenHead = new GreenfootImage("images/greenHead.png");
-    GreenfootImage redHead = new GreenfootImage("images/redHead.png");
+        GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
+        GreenfootImage pinkHead = new GreenfootImage("images/pinkHead.png");
+        GreenfootImage orangeHead = new GreenfootImage("images/orangeHead.png");
+        GreenfootImage greenHead = new GreenfootImage("images/greenHead.png");
+        GreenfootImage redHead = new GreenfootImage("images/redHead.png");
     }
+    
     public SnakeHead(String color) {
         // Load and set image
         this.currentColor = color;
@@ -59,9 +59,6 @@ public class SnakeHead extends Snake {
         checkKeyInput();
         handleInvincibility();
         checkCollision();
-        
-        
-
     }
     
     // Sets the color of the head 
@@ -302,8 +299,8 @@ public class SnakeHead extends Snake {
     private void deactivateInvincibility() {
         isInvincible = false;
         invincibilityTimer = 0;
-        GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
-        setImage(yellowHead);
+        setColor(currentColor);
+        
         // remove countdown label 
         GameWorld world = (GameWorld) getWorld(); 
         world.updatePowerUpTimeLabel(0);
