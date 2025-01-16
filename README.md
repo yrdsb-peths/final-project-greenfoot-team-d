@@ -10,9 +10,10 @@
 
 
 ### Enhancements 
-'Change the colour of your snake': 
-- in the setting you can change the color of the snake to your preference!
-'Power Up': 
+`Change the colour of your snake`: 
+- In the setting you can change the color of the snake to your preference!
+
+`Power Up`: 
 - Random power ups appear as you play the game 
 - Power up last for 6 seconds (timer appears in the corner of the screen)
 - When bumping into a wall/obstacle, it bounces off and switches direction
