@@ -11,7 +11,7 @@
 
 ### Enhancements 
 `Change the colour of your snake`: 
-- in the setting you can change the color of the snake to your preference!
+- In the setting you can change the color of the snake to your preference!
 
 `Power Up`: 
 - Random power ups appear as you play the game 
