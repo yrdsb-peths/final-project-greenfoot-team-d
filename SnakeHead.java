@@ -16,6 +16,7 @@ public class SnakeHead extends Snake {
     
     private GreenfootSound eatSound = new GreenfootSound("sounds/apple.mp3");
     private GreenfootSound levelUpSound = new GreenfootSound("sounds/levelUp.mp3");
+    private GreenfootSound powerUpSound = new GreenfootSound("sounds/powerUp.mp3");
     
     private boolean isInvincible = false;
     private int invincibilityTimer = 0;
@@ -221,6 +222,7 @@ public class SnakeHead extends Snake {
         Actor powerUp = getOneIntersectingObject(PowerUp.class);
         if (powerUp != null) {
             activateInvincibility(480);
+            powerUpSound.play();
             getWorld().removeObject(powerUp);
         }
 
