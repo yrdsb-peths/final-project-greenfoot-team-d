@@ -12,9 +12,11 @@ public class InstructionScreen extends World
         {"Eat as much food as possible \n without crashing into walls or \n yourself.",
         "The snake will grow depending \n on how much food you eat",
         "The difficulty of the game will \n get harder as the levels increase",
-        "Use Arrow Keys to control \n the snake's movement"};
+        "Use Arrow Keys to control \n the snake's movement,",
+        "Collect power-ups to become \n invincible for 8 seconds. While \n invincible, you can bounce off \n walls and obstacles without \n dying."
+        };
     private int currentIndex = 0;
-    private Label instructionLabel = new Label(allText[currentIndex], 50); 
+    private Label instructionLabel = new Label(allText[currentIndex], 40); 
     private Label next;
     Button nextButton = new Button(this::nextScreen);
     
@@ -26,7 +28,7 @@ public class InstructionScreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         this.home = home;
         instructionLabel = new Label(allText[currentIndex], 40);
-        addObject(instructionLabel, getWidth() / 2, getHeight() / 2 - 50);
+        addObject(instructionLabel, getWidth() / 2, getHeight() / 2 - 20);
         
         addObject(instructionLabel, 250, 200);
         
@@ -39,8 +41,8 @@ public class InstructionScreen extends World
         addObject(new Button(this::prevScreen), 100, 70);
         
         Label startLabel = new Label("Start", 25);
-        addObject(startLabel, 500, getHeight() / 2 + 30);
-        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 500, getHeight() / 2 + 65);
+        addObject(startLabel, 500, getHeight() / 2 + 65);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 500, getHeight() / 2 + 100);
     }
     
     private void nextScreen()
