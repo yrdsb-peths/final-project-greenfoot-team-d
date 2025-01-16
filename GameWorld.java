@@ -4,25 +4,29 @@ import greenfoot.*;
 import java.util.Random;
 
 public class GameWorld extends World {
+    
+    private World home;
+
+    // Score 
     private Label scoreLabel;
     private static int score = 0;
     private static int highScore = 0;
     
-    // power up
+    // Power up
     private PowerUp currentPowerUp;
     private int powerUpSpawnTimer = 0;
     private boolean isPowerUpActive = false;
     private Label powerUpTimeLabel;
 
-    private World home;
+    // Snake
     List<int[]> snake = new ArrayList<>();
     Snake snakeHead;
     private String selectedColor = "yellow";
 
+    // Level
     Random random = new Random();
     Label levelLabel; 
     int level = SnakeHead.getLevel();
-
 
     /*
      * Constructor 
@@ -30,12 +34,8 @@ public class GameWorld extends World {
     public GameWorld(World home, String selectedColor) {
         super(600, 400, 1);
         setBackground("images/grid2.png");
+
         this.home = home;
-        
-    
-        // // Add music button 
-        // this.musicButton = musicButton;
-        // addObject(musicButton, 950, 555);
         this.selectedColor = selectedColor;
 
         createSnake();
@@ -47,6 +47,7 @@ public class GameWorld extends World {
 
         scoreLabel = new Label("Score: " + score, 32);
         addObject(scoreLabel, 55, 55); 
+
         // initiatlize the power up spawn between each spawn
         resetPowerUpSpawnTimer();
         powerUpSpawnTimer = 100;
@@ -124,6 +125,7 @@ public class GameWorld extends World {
         scoreLabel.setValue("Score: " + score);
     }
     
+    // Spawn power up
     public void spawnPowerUp() {
         currentPowerUp = new PowerUp();
         
@@ -137,17 +139,20 @@ public class GameWorld extends World {
         
     }
     
+    // Resets spawn power up timer 
     public void resetPowerUpSpawnTimer()
     {
         powerUpSpawnTimer = Greenfoot.getRandomNumber(200) + 300;
     }
     
+    // Deactivates power up 
     public void powerUpDeactivated()
     {
         powerUpSpawnTimer = Greenfoot.getRandomNumber(10) + 300; 
         isPowerUpActive = false;
     }
     
+    // Removes power up 
     public void removePowerUp() {
         if (currentPowerUp != null && currentPowerUp.getWorld() != null) {
             removeObject(currentPowerUp);
@@ -155,6 +160,7 @@ public class GameWorld extends World {
         }
     }
     
+    // Updates power up time label
     public void updatePowerUpTimeLabel(int remainingTime) {
         if (remainingTime > 0) { 
             powerUpTimeLabel.setValue(remainingTime); 
@@ -163,6 +169,7 @@ public class GameWorld extends World {
             powerUpTimeLabel.setValue("");  
         }
     }
+    
     // Sets the selected color 
     public void setSelectedColor(String color) {
         this.selectedColor = color;

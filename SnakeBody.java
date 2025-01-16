@@ -2,6 +2,7 @@ import greenfoot.*;
 
 public class SnakeBody extends Snake {
 
+    // Snake body images
     GreenfootImage yellowBody = new GreenfootImage("images/png/snake_yellow_blob_32.png");
     GreenfootImage pinkBody = new GreenfootImage("images/body/pinkBody.png");
     GreenfootImage redBody = new GreenfootImage("images/body/redBody.png");
