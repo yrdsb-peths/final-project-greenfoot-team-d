@@ -39,7 +39,7 @@ public class InstructionScreen extends World
         
         Label startLabel = new Label("Start", 25);
         addObject(startLabel, 500, getHeight() / 2 + 65);
-        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this))), 500, getHeight() / 2 + 100);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, "yellow"))), 500, getHeight() / 2 + 100);
         this.selectedColor = selectedColor;
 
         addButtons();

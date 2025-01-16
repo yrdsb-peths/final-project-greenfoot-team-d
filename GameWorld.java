@@ -162,6 +162,7 @@ public class GameWorld extends World {
             // clear the label
             powerUpTimeLabel.setValue("");  
         }
+    }
     // Sets the selected color 
     public void setSelectedColor(String color) {
         this.selectedColor = color;

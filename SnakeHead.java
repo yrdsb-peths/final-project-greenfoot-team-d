@@ -32,7 +32,7 @@ public class SnakeHead extends Snake {
     GreenfootImage orangeHead = new GreenfootImage("images/orangeHead.png");
     GreenfootImage greenHead = new GreenfootImage("images/greenHead.png");
     GreenfootImage redHead = new GreenfootImage("images/redHead.png");
-    
+    }
     public SnakeHead(String color) {
         // Load and set image
         this.currentColor = color;
@@ -138,7 +138,7 @@ public class SnakeHead extends Snake {
             }else 
             {
                 //gameover screen;
-                Greenfoot.setWorld(new EndScreen());
+                Greenfoot.setWorld(new EndScreen("yellow"));
                 return;
             }
 
@@ -249,7 +249,7 @@ public class SnakeHead extends Snake {
                 setLocation(newX, newY);
             }else 
             {
-                Greenfoot.setWorld(new EndScreen()); 
+                Greenfoot.setWorld(new EndScreen("yellow")); 
                 return;
             }
         }
