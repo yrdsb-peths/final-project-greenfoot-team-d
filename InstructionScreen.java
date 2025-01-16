@@ -43,19 +43,19 @@ public class InstructionScreen extends World
     private void addButtons() {
         addObject(nextButton, 500, 70);
         addObject(new Button(this::prevScreen), 100, 70);
-        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, selectedColor))), 500, getHeight() / 2 + 65);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameWorld(this, selectedColor))), 500, getHeight() / 2 + 85);
     }
     
     // Add labels 
     private void addLabels() {
         instructionLabel = new Label(allText[currentIndex], 40);
-        addObject(instructionLabel, getWidth() / 2, getHeight() / 2 - 50);
+        addObject(instructionLabel, getWidth() / 2, getHeight() / 2 - 20);
 
         Label prevLabel = new Label("Back", 25);
         addObject(prevLabel, 100, 35);
 
         Label startLabel = new Label("Start", 25);
-        addObject(startLabel, 500, getHeight() / 2 + 30);
+        addObject(startLabel, 500, getHeight() / 2 + 50);
     }
 
     // Moves to next screen 
