@@ -51,7 +51,7 @@ public class SnakeHead extends Snake {
         }
 
         checkKeyInput();
-        handleInvincibility();
+        handleInvisibility();
         checkCollision();
 
     }
@@ -261,30 +261,22 @@ public class SnakeHead extends Snake {
         
         Actor powerUp = getOneIntersectingObject(PowerUp.class);
         if (powerUp != null) {
-            activateInvincibility(480);
+            activateInvisibility(480);
             powerUpSound.play();
             getWorld().removeObject(powerUp);
         }
-
-        Actor food = getOneIntersectingObject(Food.class);
-        if (food != null) {
-            Food f = (Food) food;
-            getWorld().removeObject(f);
-            grow();
-            world.increaseScore();
-            world.spawnFood();
-        }
     }
     
-    
-    private void activateInvincibility(int duration) {
+    // Activites invisibility 
+    private void activateInvisibility(int duration) {
         isInvisible = true;
         invisibilityTimer = duration; 
         GreenfootImage invincibleImage = new GreenfootImage("images/png/snake_green_head_32.png");
         setImage(invincibleImage);
     }
     
-    private void deactivateInvincibility() {
+    // Deactivites invisibility 
+    private void deactivateInvisibility() {
         isInvisible = false;
         invisibilityTimer = 0;
         GreenfootImage yellowHead = new GreenfootImage("images/png/snake_yellow_head_32.png");
@@ -295,7 +287,8 @@ public class SnakeHead extends Snake {
         world.powerUpDeactivated();
     }
     
-    private void handleInvincibility() {
+    // Handles invisibility
+    private void handleInvisibility() {
         if (isInvisible) {
             invisibilityTimer--;
             
@@ -305,7 +298,7 @@ public class SnakeHead extends Snake {
             world.updatePowerUpTimeLabel(remainingTime);
             
             if (invisibilityTimer <= 0) {
-                deactivateInvincibility();
+                deactivateInvisibility();
             }
         }
     }
